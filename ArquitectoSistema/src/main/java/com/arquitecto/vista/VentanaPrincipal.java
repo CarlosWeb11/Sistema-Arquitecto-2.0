@@ -46,6 +46,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCabeceraAbajo = new javax.swing.JPanel();
         pnlCabeceraBoton = new javax.swing.JPanel();
         btnNuevoProyecto = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         pnlPrincipalCuerpo = new javax.swing.JPanel();
         lblProyectos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -57,7 +58,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlPrincipalCabecera.setLayout(new java.awt.BorderLayout());
 
-        pnlCabeceraFoto.setLayout(new java.awt.GridLayout());
+        pnlCabeceraFoto.setLayout(new java.awt.GridLayout(1, 0));
+
+        btnFoto.addActionListener(this::btnFotoActionPerformed);
         pnlCabeceraFoto.add(btnFoto);
 
         pnlPrincipalCabecera.add(pnlCabeceraFoto, java.awt.BorderLayout.WEST);
@@ -65,6 +68,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCabeceraArriba.setLayout(new java.awt.GridLayout(2, 0));
 
         txtBienvenido.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
+        txtBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtBienvenido.setText("Bienvenido, Arquitecto");
         pnlCabeceraArriba.add(txtBienvenido);
 
@@ -80,6 +84,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnNuevoProyecto.setText("+ Nuevo Proyecto");
         pnlCabeceraBoton.add(btnNuevoProyecto, java.awt.BorderLayout.WEST);
+
+        jSeparator1.setAlignmentX(10.0F);
+        jSeparator1.setAlignmentY(10.0F);
+        pnlCabeceraBoton.add(jSeparator1, java.awt.BorderLayout.PAGE_START);
 
         pnlCabeceraAbajo.add(pnlCabeceraBoton);
 
@@ -124,6 +132,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFotoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,6 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnFoto;
     private javax.swing.JButton btnNuevoProyecto;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblProyectos;
     private javax.swing.JPanel panelProyectos;
     private javax.swing.JPanel pnlCabeceraAbajo;
