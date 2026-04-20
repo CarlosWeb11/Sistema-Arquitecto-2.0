@@ -30,7 +30,7 @@ public class ArquitectoSistemaApplication {
 
         // Mostrar ventana
         java.awt.EventQueue.invokeLater(() -> {
-            context.getBean(com.arquitecto.vista.VentanaPrincipal.class)
+            context.getBean(com.arquitecto.frontend.vista.VentanaPrincipal.class)
                     .setVisible(true);
         });
     }
