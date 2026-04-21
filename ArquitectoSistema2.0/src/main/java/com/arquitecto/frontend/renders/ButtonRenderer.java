@@ -5,22 +5,26 @@
 package com.arquitecto.frontend.renders;
 
 import java.awt.Color;
-import java.awt.Component;
+
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.table.TableCellRenderer;
+import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Scope;
 
 /**
  *
  * @author Carlos Daniel
  */
+@Component
+@Scope("prototype")
 public class ButtonRenderer extends  JToggleButton implements TableCellRenderer{
         public ButtonRenderer() {
         setOpaque(true);
     }
     
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value,
+    public java.awt.Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
         
         // value es el estado (true=eliminar, false=agregar)

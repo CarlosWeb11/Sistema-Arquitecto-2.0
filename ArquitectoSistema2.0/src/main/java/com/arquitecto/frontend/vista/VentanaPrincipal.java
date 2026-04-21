@@ -24,6 +24,8 @@ import org.springframework.stereotype.Component;
  *
  * @author Carlos Daniel
  */
+
+
 @Component
 @org.springframework.context.annotation.Profile("!test")
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -109,12 +111,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlConceptosTitulo = new javax.swing.JPanel();
         txtTituloConceptos = new javax.swing.JLabel();
         pnlConceptosTipo = new javax.swing.JPanel();
-        pnlConcepto1 = new javax.swing.JPanel();
-        lblConcepto1 = new javax.swing.JLabel();
-        lblConcepto2 = new javax.swing.JLabel();
-        lblConcepto3 = new javax.swing.JLabel();
-        lblConcepto4 = new javax.swing.JLabel();
-        lblConcepto5 = new javax.swing.JLabel();
         pnlConceptosBoton = new javax.swing.JPanel();
         btnAgregarConcepto = new javax.swing.JButton();
         pnlInformacion = new javax.swing.JPanel();
@@ -295,17 +291,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlConceptos.add(pnlConceptosTitulo, java.awt.BorderLayout.PAGE_START);
 
-        pnlConceptosTipo.setLayout(new java.awt.BorderLayout());
-
-        pnlConcepto1.setLayout(new java.awt.GridLayout(5, 0));
-        pnlConcepto1.add(lblConcepto1);
-        pnlConcepto1.add(lblConcepto2);
-        pnlConcepto1.add(lblConcepto3);
-        pnlConcepto1.add(lblConcepto4);
-        pnlConcepto1.add(lblConcepto5);
-
-        pnlConceptosTipo.add(pnlConcepto1, java.awt.BorderLayout.NORTH);
-
+        pnlConceptosTipo.setLayout(new java.awt.GridLayout(5, 1));
         pnlConceptos.add(pnlConceptosTipo, java.awt.BorderLayout.CENTER);
 
         pnlConceptosBoton.setLayout(new java.awt.BorderLayout());
@@ -374,9 +360,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnAgregarConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarConceptoActionPerformed
 
-        // TODO add your handling code here:
-        Preeliminares ac = new Preeliminares(this, true, conceptosAgregados);
-        ac.setVisible(true);
+    Preeliminares dialog = context.getBean(Preeliminares.class);
+    dialog.init(this, conceptosAgregados); // ✅ pasas los parámetros aquí
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
       
     }//GEN-LAST:event_btnAgregarConceptoActionPerformed
 
@@ -415,11 +402,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JLabel lblConcepto1;
-    private javax.swing.JLabel lblConcepto2;
-    private javax.swing.JLabel lblConcepto3;
-    private javax.swing.JLabel lblConcepto4;
-    private javax.swing.JLabel lblConcepto5;
     private javax.swing.JLabel lblProyectos;
     private javax.swing.JPanel panelProyectos;
     private javax.swing.JPanel pnlBotones;
@@ -429,7 +411,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlCabeceraBoton;
     private javax.swing.JPanel pnlCabeceraFoto;
     private javax.swing.JPanel pnlCentro;
-    private javax.swing.JPanel pnlConcepto1;
     private javax.swing.JPanel pnlConceptos;
     private javax.swing.JPanel pnlConceptosBoton;
     private javax.swing.JPanel pnlConceptosTipo;
@@ -553,33 +534,91 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     public void agregarConceptos(int id){
 
+        System.out.println("Se llamo a la funcion");
             switch(id){
                 case 0:
                     labelsPreeliminares[id] = new JLabel();
                     labelsPreeliminares[id].setText("1.1.-Excavacion");
                     pnlConceptosTipo.add(labelsPreeliminares[id]);
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+    pnlConceptosTipo.repaint();
                     
                     break;
                 case 1:
                     labelsPreeliminares[id] = new JLabel();
                     labelsPreeliminares[id].setText("1.2 .-Relleno");
                     pnlConceptosTipo.add(labelsPreeliminares[id]);
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+    pnlConceptosTipo.repaint();
                      
                     break;
                 case 2:
                     labelsPreeliminares[id] = new JLabel();
                     labelsPreeliminares[id].setText("1.3 .-Planta");
-                    pnlConceptosTipo.add(labelsPreeliminares[id]);
+                    pnlConceptosTipo.add(labelsPreeliminares[id]);pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+    pnlConceptosTipo.repaint();
+                    
                     break;
                 case 3:
                     labelsPreeliminares[id] = new JLabel();
                     labelsPreeliminares[id].setText("1.4 .-Locura");
                     pnlConceptosTipo.add(labelsPreeliminares[id]);
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+    pnlConceptosTipo.repaint();
                     break;
                 case 4:
                     labelsPreeliminares[id] = new JLabel();
                     labelsPreeliminares[id].setText("1.5.-Pole ahi un ladrillo");
                     pnlConceptosTipo.add(labelsPreeliminares[id]);
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+    pnlConceptosTipo.repaint();
+                    
+                    
+                    break;
+        }
+            
+            
+            
+        }
+    
+    public void EliminarConceptos(int id){
+
+        System.out.println("Se llamo a la funcion");
+            switch(id){
+                case 0:
+                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                    
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                    pnlConceptosTipo.repaint();
+                    
+                    break;
+                case 1:
+                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                    
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                    pnlConceptosTipo.repaint();;
+                     
+                    break;
+                case 2:
+                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                    
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                    pnlConceptosTipo.repaint();
+                    
+                    break;
+                case 3:
+                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                    
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                    pnlConceptosTipo.repaint();
+                    break;
+                case 4:
+                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                    
+                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                    pnlConceptosTipo.repaint();
+                    
+                    
                     break;
         }
             

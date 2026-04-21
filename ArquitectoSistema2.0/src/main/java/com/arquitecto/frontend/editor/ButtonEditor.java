@@ -4,8 +4,8 @@
  */
 package com.arquitecto.frontend.editor;
 
+import com.arquitecto.frontend.vista.VentanaPrincipal;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventObject;
@@ -13,11 +13,16 @@ import javax.swing.AbstractCellEditor;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.table.TableCellEditor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Carlos Daniel
  */
+@Component
+@Scope("prototype")
 public class ButtonEditor extends AbstractCellEditor implements TableCellEditor, ActionListener {
         private JToggleButton button;
     private JTable table;
@@ -25,16 +30,21 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor,
     private int currentColumn;
     private boolean currentValue;
     private boolean[] estados;
-    public ButtonEditor(JTable table, boolean[] estados) {
-        this.estados = estados;
-        this.table = table;
-        button = new JToggleButton();
-        button.setOpaque(true);
-        button.addActionListener(this);
+    
+    @Autowired
+    private VentanaPrincipal ventanaPrincipal;
+    
+    
+    public ButtonEditor() {
+        this.button = new JToggleButton(); // ✅ Inicializar aquí
+        this.button.setOpaque(true);
+        this.button.addActionListener(this);
+        
     }
     
+    
     @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
+    public java.awt.Component getTableCellEditorComponent(JTable table, Object value,
             boolean isSelected, int row, int column) {
         
         this.currentRow = row;
@@ -59,6 +69,10 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor,
         return button;
     }
     
+    public void init(JTable table, boolean[] estados) {
+        this.table = table;
+        this.estados = estados;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         currentValue = button.isSelected();
@@ -74,8 +88,10 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor,
         // Mostrar en consola
         if (currentValue) {
             System.out.println("AGREGAR - Fila: " + currentRow);
+            ventanaPrincipal.agregarConceptos(currentRow);
         } else {
             System.out.println("ELIMINAR - Fila: " + currentRow);
+            ventanaPrincipal.EliminarConceptos(currentRow);
         }
         
         fireEditingStopped();

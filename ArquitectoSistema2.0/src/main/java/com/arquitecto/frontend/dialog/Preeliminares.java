@@ -25,17 +25,29 @@ public class Preeliminares extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Preeliminares.class.getName());
     
+    @Autowired
     private VentanaPrincipal ventanaPrincipal;
     
     private boolean[] estados;
+    
+    @Autowired
+    private ButtonRenderer buttonRenderer;  // ← Spring inyecta
+    
+    @Autowired
+   private ButtonEditor buttonEditor; 
 
    
     @Autowired
-    public Preeliminares(java.awt.Frame parent, boolean modal,boolean[] estados) {
-        super(parent, modal);
-        initComponents();
-        this.ventanaPrincipal = (VentanaPrincipal) parent;
+    public Preeliminares() {
+        super();
+        
+    }
+    
+    public void init(VentanaPrincipal parent, boolean[] estados) {
+        this.ventanaPrincipal = parent;
         this.estados = estados;
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        initComponents();
         prepararTabla();
         configurarBoton();
     }
@@ -59,7 +71,6 @@ public class Preeliminares extends javax.swing.JDialog {
         tblPreliminares = new javax.swing.JTable();
         pnlBotones = new javax.swing.JPanel();
         btnAgregarPreliminar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,13 +113,9 @@ public class Preeliminares extends javax.swing.JDialog {
 
         pnlBotones.setLayout(new java.awt.BorderLayout());
 
-        btnAgregarPreliminar.setText("+Agregar Conceptos");
+        btnAgregarPreliminar.setText("Confirmar");
         btnAgregarPreliminar.addActionListener(this::btnAgregarPreliminarActionPerformed);
         pnlBotones.add(btnAgregarPreliminar, java.awt.BorderLayout.EAST);
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
-        pnlBotones.add(btnCancelar, java.awt.BorderLayout.WEST);
 
         pnlPreliminares.add(pnlBotones, java.awt.BorderLayout.PAGE_END);
 
@@ -146,22 +153,16 @@ public class Preeliminares extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarPreliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreliminarActionPerformed
-        
+        this.dispose();
         
         
       
     }//GEN-LAST:event_btnAgregarPreliminarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPreliminar;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel pnlBotones;
@@ -191,12 +192,15 @@ public class Preeliminares extends javax.swing.JDialog {
        
     }
     private void configurarBoton() {
+        System.out.println("hola pituras");
     int columnaBoton = tblPreliminares.getColumnModel().getColumnIndex("Acciones");
     TableColumn columna = tblPreliminares.getColumnModel().getColumn(columnaBoton);
     
-    columna.setCellRenderer(new ButtonRenderer());
-    // Pasar el arreglo de estados al editor
-    columna.setCellEditor(new ButtonEditor(tblPreliminares, estados));
+    columna.setCellRenderer(buttonRenderer);
+
+    buttonEditor.init(tblPreliminares, estados);
+    columna.setCellEditor(buttonEditor);
+    
 }
         
     
