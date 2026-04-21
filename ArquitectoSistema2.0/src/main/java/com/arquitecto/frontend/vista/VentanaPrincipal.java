@@ -9,11 +9,18 @@ import com.arquitecto.model.Material;
 import com.arquitecto.frontend.dialog.Preeliminares;
 
 import database.database;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +44,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private boolean[] conceptosAgregados;
 
     MaterialDAO dao = new MaterialDAO();
-    //ID de los conceptos
-    List<Integer> id_pre = new ArrayList<>();
 
-    //Arreglo de label para el panel de preeliminares
-    private JLabel[] labelsPreeliminares = new JLabel[5];
+    ArrayList<Integer> id_panelesPre = new ArrayList<>();
+
+    private JPanel[] panelesPreeliminares = new JPanel[5];
 
     public VentanaPrincipal() {
         initComponents();
@@ -99,10 +105,47 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlConceptos = new javax.swing.JPanel();
         pnlConceptosTitulo = new javax.swing.JPanel();
         txtTituloConceptos = new javax.swing.JLabel();
-        pnlConceptosTipo = new javax.swing.JPanel();
-        pnlConceptosBoton = new javax.swing.JPanel();
+        pnlConceptosCuerpo = new javax.swing.JPanel();
+        pnlConceptosAgregar = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         btnAgregarConcepto = new javax.swing.JButton();
+        pnlConceptosBoton = new javax.swing.JPanel();
+        btnRegresarMateriales = new javax.swing.JButton();
         pnlInformacion = new javax.swing.JPanel();
+        pnlPre1 = new javax.swing.JPanel();
+        ScrollPre1 = new javax.swing.JScrollPane();
+        pnlCuerpoPre1 = new javax.swing.JPanel();
+        pnlCuerpoCabPre1 = new javax.swing.JPanel();
+        pnlCuerpoCabTit = new javax.swing.JPanel();
+        lblConceptoPre = new javax.swing.JLabel();
+        lblConceptoPre1 = new javax.swing.JLabel();
+        pnlCuerpoCabDesc = new javax.swing.JPanel();
+        lblUnidadDes = new javax.swing.JLabel();
+        lblUnidadRes = new javax.swing.JLabel();
+        lblCantidadDes = new javax.swing.JLabel();
+        lblCantidadRes = new javax.swing.JLabel();
+        lblPresioDes = new javax.swing.JLabel();
+        lblPrecioRes = new javax.swing.JLabel();
+        lblUnidadDes6 = new javax.swing.JLabel();
+        lblTotalRes = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        pnlCuerpoCentPre1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblMaterialPre = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        pnlCuerpoBajoPre1 = new javax.swing.JPanel();
+        btnGuardar1_1 = new javax.swing.JButton();
+        pnlPre2 = new javax.swing.JPanel();
+        pnlPre3 = new javax.swing.JPanel();
+        pnlPre4 = new javax.swing.JPanel();
+        pnlPre5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,7 +163,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelProyectos.setLayout(panelProyectosLayout);
         panelProyectosLayout.setHorizontalGroup(
             panelProyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 867, Short.MAX_VALUE)
+            .addGap(0, 987, Short.MAX_VALUE)
         );
         panelProyectosLayout.setVerticalGroup(
             panelProyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +305,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         pnlMaterialesLayout.setVerticalGroup(
             pnlMaterialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrincipalMateriales, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addComponent(pnlPrincipalMateriales, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
         );
 
         pnlPrincipal.add(pnlMateriales, "cardMateriales");
@@ -278,31 +321,245 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtTituloConceptos.setText("Preeliminar");
         pnlConceptosTitulo.add(txtTituloConceptos);
 
-        pnlConceptos.add(pnlConceptosTitulo, java.awt.BorderLayout.PAGE_START);
+        pnlConceptos.add(pnlConceptosTitulo, java.awt.BorderLayout.NORTH);
 
-        pnlConceptosTipo.setLayout(new java.awt.GridLayout(5, 1));
-        pnlConceptos.add(pnlConceptosTipo, java.awt.BorderLayout.CENTER);
+        pnlConceptosCuerpo.setLayout(new javax.swing.BoxLayout(pnlConceptosCuerpo, javax.swing.BoxLayout.Y_AXIS));
 
-        pnlConceptosBoton.setLayout(new java.awt.BorderLayout());
+        pnlConceptosAgregar.setLayout(new javax.swing.BoxLayout(pnlConceptosAgregar, javax.swing.BoxLayout.Y_AXIS));
+        pnlConceptosCuerpo.add(pnlConceptosAgregar);
 
         btnAgregarConcepto.setText("+ Agregar Concepto");
         btnAgregarConcepto.addActionListener(this::btnAgregarConceptoActionPerformed);
-        pnlConceptosBoton.add(btnAgregarConcepto, java.awt.BorderLayout.PAGE_START);
+        jPanel1.add(btnAgregarConcepto);
+
+        pnlConceptosCuerpo.add(jPanel1);
+
+        pnlConceptos.add(pnlConceptosCuerpo, java.awt.BorderLayout.CENTER);
+
+        pnlConceptosBoton.setLayout(new java.awt.BorderLayout());
+
+        btnRegresarMateriales.setText("<- Regresar");
+        btnRegresarMateriales.addActionListener(this::btnRegresarMaterialesActionPerformed);
+        pnlConceptosBoton.add(btnRegresarMateriales, java.awt.BorderLayout.PAGE_START);
 
         pnlConceptos.add(pnlConceptosBoton, java.awt.BorderLayout.SOUTH);
 
         pnlPreliminaresPrincipal.add(pnlConceptos, java.awt.BorderLayout.WEST);
 
-        javax.swing.GroupLayout pnlInformacionLayout = new javax.swing.GroupLayout(pnlInformacion);
-        pnlInformacion.setLayout(pnlInformacionLayout);
-        pnlInformacionLayout.setHorizontalGroup(
-            pnlInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 730, Short.MAX_VALUE)
+        pnlInformacion.setLayout(new java.awt.CardLayout());
+
+        pnlPre1.setBackground(new java.awt.Color(255, 102, 102));
+        pnlPre1.setLayout(new java.awt.GridLayout());
+
+        pnlCuerpoPre1.setBackground(new java.awt.Color(51, 255, 0));
+        pnlCuerpoPre1.setForeground(new java.awt.Color(0, 102, 51));
+        pnlCuerpoPre1.setLayout(new java.awt.BorderLayout());
+
+        pnlCuerpoCabPre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlCuerpoCabPre1.setLayout(new java.awt.BorderLayout());
+
+        pnlCuerpoCabTit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlCuerpoCabTit.setLayout(new java.awt.BorderLayout());
+
+        lblConceptoPre.setText("CLAVE");
+        pnlCuerpoCabTit.add(lblConceptoPre, java.awt.BorderLayout.NORTH);
+
+        lblConceptoPre1.setText("1.1");
+        pnlCuerpoCabTit.add(lblConceptoPre1, java.awt.BorderLayout.PAGE_END);
+
+        pnlCuerpoCabPre1.add(pnlCuerpoCabTit, java.awt.BorderLayout.WEST);
+
+        pnlCuerpoCabDesc.setLayout(new java.awt.GridLayout(4, 2));
+
+        lblUnidadDes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnidadDes.setText("UNIDAD:");
+        pnlCuerpoCabDesc.add(lblUnidadDes);
+
+        lblUnidadRes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUnidadRes.setText("m3");
+        pnlCuerpoCabDesc.add(lblUnidadRes);
+
+        lblCantidadDes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCantidadDes.setText("CANTIDAD");
+        pnlCuerpoCabDesc.add(lblCantidadDes);
+
+        lblCantidadRes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidadRes.setText("1.00");
+        pnlCuerpoCabDesc.add(lblCantidadRes);
+
+        lblPresioDes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPresioDes.setText("PRECIO UNITARIO:");
+        pnlCuerpoCabDesc.add(lblPresioDes);
+
+        lblPrecioRes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPrecioRes.setText("$132.20");
+        pnlCuerpoCabDesc.add(lblPrecioRes);
+
+        lblUnidadDes6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnidadDes6.setText("TOTAL");
+        pnlCuerpoCabDesc.add(lblUnidadDes6);
+
+        lblTotalRes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotalRes.setText("$132.20");
+        pnlCuerpoCabDesc.add(lblTotalRes);
+
+        pnlCuerpoCabPre1.add(pnlCuerpoCabDesc, java.awt.BorderLayout.EAST);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE,\nACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.\n");
+        jScrollPane5.setViewportView(jTextArea1);
+
+        pnlCuerpoCabPre1.add(jScrollPane5, java.awt.BorderLayout.CENTER);
+
+        pnlCuerpoPre1.add(pnlCuerpoCabPre1, java.awt.BorderLayout.NORTH);
+
+        pnlCuerpoCentPre1.setLayout(new java.awt.GridLayout());
+
+        tblMaterialPre.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tblMaterialPre);
+
+        jTabbedPane1.addTab("Material", jScrollPane6);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable2);
+
+        jTabbedPane1.addTab("Mano de obra", jScrollPane7);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable3);
+
+        jTabbedPane1.addTab("Herramienta", jScrollPane8);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
+            }
+        ));
+        jScrollPane9.setViewportView(jTable1);
+
+        jTabbedPane1.addTab("Equipo", jScrollPane9);
+
+        pnlCuerpoCentPre1.add(jTabbedPane1);
+
+        pnlCuerpoPre1.add(pnlCuerpoCentPre1, java.awt.BorderLayout.CENTER);
+
+        pnlCuerpoBajoPre1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        btnGuardar1_1.setText("Guardar");
+        pnlCuerpoBajoPre1.add(btnGuardar1_1);
+
+        pnlCuerpoPre1.add(pnlCuerpoBajoPre1, java.awt.BorderLayout.PAGE_END);
+
+        ScrollPre1.setViewportView(pnlCuerpoPre1);
+
+        pnlPre1.add(ScrollPre1);
+
+        pnlInformacion.add(pnlPre1, "cardPre1");
+
+        pnlPre2.setBackground(new java.awt.Color(102, 255, 51));
+
+        javax.swing.GroupLayout pnlPre2Layout = new javax.swing.GroupLayout(pnlPre2);
+        pnlPre2.setLayout(pnlPre2Layout);
+        pnlPre2Layout.setHorizontalGroup(
+            pnlPre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 852, Short.MAX_VALUE)
         );
-        pnlInformacionLayout.setVerticalGroup(
-            pnlInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
+        pnlPre2Layout.setVerticalGroup(
+            pnlPre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
         );
+
+        pnlInformacion.add(pnlPre2, "cardPre2");
+
+        pnlPre3.setBackground(new java.awt.Color(0, 51, 204));
+
+        javax.swing.GroupLayout pnlPre3Layout = new javax.swing.GroupLayout(pnlPre3);
+        pnlPre3.setLayout(pnlPre3Layout);
+        pnlPre3Layout.setHorizontalGroup(
+            pnlPre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 852, Short.MAX_VALUE)
+        );
+        pnlPre3Layout.setVerticalGroup(
+            pnlPre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+        );
+
+        pnlInformacion.add(pnlPre3, "cardPre3");
+
+        pnlPre4.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout pnlPre4Layout = new javax.swing.GroupLayout(pnlPre4);
+        pnlPre4.setLayout(pnlPre4Layout);
+        pnlPre4Layout.setHorizontalGroup(
+            pnlPre4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 852, Short.MAX_VALUE)
+        );
+        pnlPre4Layout.setVerticalGroup(
+            pnlPre4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+        );
+
+        pnlInformacion.add(pnlPre4, "cardPre4");
+
+        pnlPre5.setBackground(new java.awt.Color(0, 102, 102));
+
+        javax.swing.GroupLayout pnlPre5Layout = new javax.swing.GroupLayout(pnlPre5);
+        pnlPre5.setLayout(pnlPre5Layout);
+        pnlPre5Layout.setHorizontalGroup(
+            pnlPre5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 852, Short.MAX_VALUE)
+        );
+        pnlPre5Layout.setVerticalGroup(
+            pnlPre5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 605, Short.MAX_VALUE)
+        );
+
+        pnlInformacion.add(pnlPre5, "cardPre5");
 
         pnlPreliminaresPrincipal.add(pnlInformacion, java.awt.BorderLayout.CENTER);
 
@@ -327,7 +584,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
         );
 
         pack();
@@ -347,8 +604,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    private void btnAgregarConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarConceptoActionPerformed
+    private void btnRegresarMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMaterialesActionPerformed
 
+
+    }//GEN-LAST:event_btnRegresarMaterialesActionPerformed
+
+    private void btnAgregarConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarConceptoActionPerformed
         Preeliminares dialog = context.getBean(Preeliminares.class);
         dialog.init(this, conceptosAgregados); // ✅ pasas los parámetros aquí
         dialog.setLocationRelativeTo(this);
@@ -382,16 +643,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane ScrollPre1;
     private javax.swing.JButton btnAgregarConcepto;
     private javax.swing.JButton btnFoto;
+    private javax.swing.JButton btnGuardar1_1;
     private javax.swing.JButton btnNuevoProyecto;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnRegresarMateriales;
     private javax.swing.JButton btnSiguiente;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblCantidadDes;
+    private javax.swing.JLabel lblCantidadRes;
+    private javax.swing.JLabel lblConceptoPre;
+    private javax.swing.JLabel lblConceptoPre1;
+    private javax.swing.JLabel lblPrecioRes;
+    private javax.swing.JLabel lblPresioDes;
     private javax.swing.JLabel lblProyectos;
+    private javax.swing.JLabel lblTotalRes;
+    private javax.swing.JLabel lblUnidadDes;
+    private javax.swing.JLabel lblUnidadDes6;
+    private javax.swing.JLabel lblUnidadRes;
     private javax.swing.JPanel panelProyectos;
     private javax.swing.JPanel pnlBotones;
     private javax.swing.JPanel pnlCabecera;
@@ -401,12 +686,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlCabeceraFoto;
     private javax.swing.JPanel pnlCentro;
     private javax.swing.JPanel pnlConceptos;
+    private javax.swing.JPanel pnlConceptosAgregar;
     private javax.swing.JPanel pnlConceptosBoton;
-    private javax.swing.JPanel pnlConceptosTipo;
+    private javax.swing.JPanel pnlConceptosCuerpo;
     private javax.swing.JPanel pnlConceptosTitulo;
+    private javax.swing.JPanel pnlCuerpoBajoPre1;
+    private javax.swing.JPanel pnlCuerpoCabDesc;
+    private javax.swing.JPanel pnlCuerpoCabPre1;
+    private javax.swing.JPanel pnlCuerpoCabTit;
+    private javax.swing.JPanel pnlCuerpoCentPre1;
+    private javax.swing.JPanel pnlCuerpoPre1;
     private javax.swing.JPanel pnlInformacion;
     private javax.swing.JPanel pnlInicio;
     private javax.swing.JPanel pnlMateriales;
+    private javax.swing.JPanel pnlPre1;
+    private javax.swing.JPanel pnlPre2;
+    private javax.swing.JPanel pnlPre3;
+    private javax.swing.JPanel pnlPre4;
+    private javax.swing.JPanel pnlPre5;
     private javax.swing.JPanel pnlPreeliminares;
     private javax.swing.JPanel pnlPreliminaresPrincipal;
     private javax.swing.JPanel pnlPrincipal;
@@ -416,6 +713,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlTabla;
     private javax.swing.JPanel pnlTablaCentro;
     private javax.swing.JTable tblCimientos;
+    private javax.swing.JTable tblMaterialPre;
     private javax.swing.JTable tblMuros;
     private javax.swing.JTable tblPolvo;
     private javax.swing.JTabbedPane tbpMateriales;
@@ -448,6 +746,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             cardLayout.show(pnlPrincipal, "cardInicio");
         });
+
+        
+        
+        
+
+        
+        
 
     }
 
@@ -517,46 +822,107 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void agregarConceptos(int id) {
 
+        //Paneles de Preeliminares
+        CardLayout cardLayoutPre = (CardLayout) pnlInformacion.getLayout();
         System.out.println("Se llamo a la funcion");
         switch (id) {
             case 0:
-                labelsPreeliminares[id] = new JLabel();
-                labelsPreeliminares[id].setText("1.1.-Excavacion");
-                pnlConceptosTipo.add(labelsPreeliminares[id]);
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+
+                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                JButton btnPre1 = new JButton("1.1 Acabado");
+                panelesPreeliminares[id].add(btnPre1);
+
+                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                btnPre1.addActionListener(e -> {
+
+                    cardLayoutPre.show(pnlInformacion, "cardPre1");
+                });
+
+                panelesPreeliminares[id].setMaximumSize(
+                        new Dimension(Integer.MAX_VALUE,
+                                panelesPreeliminares[id].getPreferredSize().height)
+                );
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+                
+                id_panelesPre.add(0);
 
                 break;
             case 1:
-                labelsPreeliminares[id] = new JLabel();
-                labelsPreeliminares[id].setText("1.2 .-Relleno");
-                pnlConceptosTipo.add(labelsPreeliminares[id]);
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                JButton btnPre2 = new JButton("1.2 .-Relleno");
+                panelesPreeliminares[id].add(btnPre2);
+                btnPre2.addActionListener(e -> {
 
+                    cardLayoutPre.show(pnlInformacion, "cardPre2");
+                });
+                panelesPreeliminares[id].setMaximumSize(
+                        new Dimension(Integer.MAX_VALUE,
+                                panelesPreeliminares[id].getPreferredSize().height)
+                );
+
+                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+
+                id_panelesPre.add(1);
                 break;
             case 2:
-                labelsPreeliminares[id] = new JLabel();
-                labelsPreeliminares[id].setText("1.3 .-Planta");
-                pnlConceptosTipo.add(labelsPreeliminares[id]);
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                JButton btnPre3 = new JButton("1.3 .-Excavacion");
+                panelesPreeliminares[id].add(btnPre3);
+                btnPre3.addActionListener(e -> {
 
+                    cardLayoutPre.show(pnlInformacion, "cardPre3");
+                });
+                panelesPreeliminares[id].setMaximumSize(
+                        new Dimension(Integer.MAX_VALUE,
+                                panelesPreeliminares[id].getPreferredSize().height)
+                );
+
+                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+
+                id_panelesPre.add(2);
                 break;
             case 3:
-                labelsPreeliminares[id] = new JLabel();
-                labelsPreeliminares[id].setText("1.4 .-Locura");
-                pnlConceptosTipo.add(labelsPreeliminares[id]);
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                JButton btnPre4 = new JButton("1.5 .-ahhh");
+                panelesPreeliminares[id].add(btnPre4);
+                btnPre4.addActionListener(e -> {
+
+                    cardLayoutPre.show(pnlInformacion, "cardPre4");
+                });
+                panelesPreeliminares[id].setMaximumSize(
+                        new Dimension(Integer.MAX_VALUE,
+                                panelesPreeliminares[id].getPreferredSize().height)
+                );
+
+                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+                
+                id_panelesPre.add(3);
                 break;
             case 4:
-                labelsPreeliminares[id] = new JLabel();
-                labelsPreeliminares[id].setText("1.5.-Pole ahi un ladrillo");
-                pnlConceptosTipo.add(labelsPreeliminares[id]);
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                JButton btnPre5 = new JButton("1.5 .-ahi va disque un ladrillo");
+                panelesPreeliminares[id].add(btnPre5);
+                btnPre5.addActionListener(e -> {
 
+                    cardLayoutPre.show(pnlInformacion, "cardPre5");
+                });
+                panelesPreeliminares[id].setMaximumSize(
+                        new Dimension(Integer.MAX_VALUE,
+                                panelesPreeliminares[id].getPreferredSize().height)
+                );
+
+                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+
+                id_panelesPre.add(4);
                 break;
         }
 
@@ -567,38 +933,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.out.println("Se llamo a la funcion");
         switch (id) {
             case 0:
-                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                pnlConceptosAgregar.remove(panelesPreeliminares[id]);
 
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
 
+                id_panelesPre.remove(0);
                 break;
             case 1:
-                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                pnlConceptosAgregar.remove(panelesPreeliminares[id]);
 
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
-                ;
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+                id_panelesPre.remove(1);
 
                 break;
             case 2:
-                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                pnlConceptosAgregar.remove(panelesPreeliminares[id]);
 
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+                id_panelesPre.remove(2);
 
                 break;
             case 3:
-                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                pnlConceptosAgregar.remove(panelesPreeliminares[id]);
 
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+                id_panelesPre.remove(3);
                 break;
             case 4:
-                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+                pnlConceptosAgregar.remove(panelesPreeliminares[id]);
 
-                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                pnlConceptosTipo.repaint();
+                pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosAgregar.repaint();
+                id_panelesPre.remove(4);
 
                 break;
         }
