@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class MaterialDAO {
 
+    //Inserta un nuevo material en la base de datos//
     public void insertar(Material c) {
 
         String sql = "INSERT INTO CATEGORIAMATERIAL"
@@ -38,6 +39,7 @@ public class MaterialDAO {
 
     }
 
+    //Devuelve una lista con todos los materiales//
     public List<Material> listar() {
 
         List<Material> lista = new ArrayList<>();
@@ -66,6 +68,7 @@ public class MaterialDAO {
         return lista;
     }
 
+    //Elimina un material segun el id//
     public void eliminar(int id) {
 
         String sql = "DELETE FROM CATEGORIAMATERIAL WHERE CAT_ID = ?";
@@ -82,6 +85,7 @@ public class MaterialDAO {
         }
     }
 
+    //Refresca los datos del material//
     public void actualizar(Material c) {
 
         String sql = "UPDATE CATEGORIAMATERIAL SET "
@@ -110,7 +114,7 @@ public class MaterialDAO {
         }
     }
 
-    //Metodos para hacer pruebas con la base de datos 
+    //Metodos para hacer pruebas con la base de datos//
     public void eliminarTodo() {
         String sql = "DELETE FROM CATEGORIAMATERIAL";
         try (Connection conn = database.getConnection(); Statement stmt = conn.createStatement()) {
@@ -123,39 +127,35 @@ public class MaterialDAO {
 
     }
 
-public List<Material> listarCategoria(String categoria) {
-    List<Material> lista = new ArrayList<>();
-    String sql = "SELECT * FROM CATEGORIAMATERIAL WHERE CAT_CATEGORIA = ?";
-    
-    try (Connection conn = database.getConnection();
-         PreparedStatement ps = conn.prepareStatement(sql)) {
-        
-        ps.setString(1, categoria);
-        
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Material c = new Material();
-                
-                c.setId(rs.getInt("CAT_ID"));
-                c.setNombre(rs.getString("CAT_NOMBRE"));
-                c.setUnidad1(rs.getString("CAT_UNIDAD1"));
-                c.setPu(rs.getDouble("CAT_PU"));
-                c.setUnidad2(rs.getString("CAT_UNIDAD2"));
-                c.setPu2(rs.getDouble("CAT_PU2"));
-                c.setCategoria(rs.getString("CAT_CATEGORIA"));
-                
-                lista.add(c);
+    public List<Material> listarCategoria(String categoria) {
+        List<Material> lista = new ArrayList<>();
+        String sql = "SELECT * FROM CATEGORIAMATERIAL WHERE CAT_CATEGORIA = ?";
+
+        try (Connection conn = database.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, categoria);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Material c = new Material();
+
+                    c.setId(rs.getInt("CAT_ID"));
+                    c.setNombre(rs.getString("CAT_NOMBRE"));
+                    c.setUnidad1(rs.getString("CAT_UNIDAD1"));
+                    c.setPu(rs.getDouble("CAT_PU"));
+                    c.setUnidad2(rs.getString("CAT_UNIDAD2"));
+                    c.setPu2(rs.getDouble("CAT_PU2"));
+                    c.setCategoria(rs.getString("CAT_CATEGORIA"));
+
+                    lista.add(c);
+                }
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        
-    } catch (SQLException e) {
-        e.printStackTrace();
+
+        return lista;
     }
-    
-    return lista;
-}
 
 }
-  
-
-

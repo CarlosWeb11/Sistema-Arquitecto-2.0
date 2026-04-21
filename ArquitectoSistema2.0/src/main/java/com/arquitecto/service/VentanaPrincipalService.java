@@ -9,6 +9,5 @@ package com.arquitecto.service;
  * @author Carlos Daniel
  */
 public class VentanaPrincipalService {
-    
-    
+
 }

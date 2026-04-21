@@ -16,19 +16,19 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @SpringBootApplication
 public class ArquitectoSistemaApplication {
+
     public static void main(String[] args) {
 
-
-        // Tema
+        //Tema oscuro//
         FlatDarkLaf.setup();
 
-        // Spring con UI habilitada
+        //Spring con UI habilitada//
         ConfigurableApplicationContext context
                 = new SpringApplicationBuilder(ArquitectoSistemaApplication.class)
                         .headless(false)
                         .run(args);
 
-        // Mostrar ventana
+        //Mostrar ventana//
         java.awt.EventQueue.invokeLater(() -> {
             context.getBean(com.arquitecto.frontend.vista.VentanaPrincipal.class)
                     .setVisible(true);

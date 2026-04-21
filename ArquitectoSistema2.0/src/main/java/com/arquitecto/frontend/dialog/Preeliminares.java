@@ -22,27 +22,26 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class Preeliminares extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Preeliminares.class.getName());
-    
+
     @Autowired
     private VentanaPrincipal ventanaPrincipal;
-    
+
     private boolean[] estados;
-    
+
     @Autowired
     private ButtonRenderer buttonRenderer;  // ← Spring inyecta
-    
-    @Autowired
-   private ButtonEditor buttonEditor; 
 
-   
+    @Autowired
+    private ButtonEditor buttonEditor;
+
     @Autowired
     public Preeliminares() {
         super();
-        
+
     }
-    
+
     public void init(VentanaPrincipal parent, boolean[] estados) {
         this.ventanaPrincipal = parent;
         this.estados = estados;
@@ -154,12 +153,10 @@ public class Preeliminares extends javax.swing.JDialog {
 
     private void btnAgregarPreliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPreliminarActionPerformed
         this.dispose();
-        
-        
-      
+
+
     }//GEN-LAST:event_btnAgregarPreliminarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPreliminar;
@@ -174,36 +171,32 @@ public class Preeliminares extends javax.swing.JDialog {
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 
-   
-        public void prepararTablaPre(List<Integer> ids) {
-    
-        
+    public void prepararTablaPre(List<Integer> ids) {
+
     }
 
     private void prepararTabla() {
-    DefaultTableModel model = (DefaultTableModel) tblPreliminares.getModel();
-        
+        DefaultTableModel model = (DefaultTableModel) tblPreliminares.getModel();
+
         // Por cada fila, poner el estado guardado
         for (int i = 0; i < model.getRowCount() && i < estados.length; i++) {
             // La columna "Acción" es la última
             int columnaAccion = model.getColumnCount() - 1;
             model.setValueAt(estados[i], i, columnaAccion);
+        }
+
     }
-       
-    }
+
     private void configurarBoton() {
         System.out.println("hola pituras");
-    int columnaBoton = tblPreliminares.getColumnModel().getColumnIndex("Acciones");
-    TableColumn columna = tblPreliminares.getColumnModel().getColumn(columnaBoton);
-    
-    columna.setCellRenderer(buttonRenderer);
+        int columnaBoton = tblPreliminares.getColumnModel().getColumnIndex("Acciones");
+        TableColumn columna = tblPreliminares.getColumnModel().getColumn(columnaBoton);
 
-    buttonEditor.init(tblPreliminares, estados);
-    columna.setCellEditor(buttonEditor);
-    
-}
-        
-    
-}
-    
+        columna.setCellRenderer(buttonRenderer);
 
+        buttonEditor.init(tblPreliminares, estados);
+        columna.setCellEditor(buttonEditor);
+
+    }
+
+}

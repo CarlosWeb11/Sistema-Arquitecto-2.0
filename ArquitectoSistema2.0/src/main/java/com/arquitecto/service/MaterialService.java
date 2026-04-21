@@ -13,7 +13,8 @@ import java.util.List;
  * @author Carlos Daniel
  */
 public class MaterialService {
-     private MaterialDAO dao = new MaterialDAO();
+
+    private MaterialDAO dao = new MaterialDAO();
 
     // 🔵 GUARDAR
     public void guardar(Material c) {
@@ -51,5 +52,5 @@ public class MaterialService {
 
         dao.eliminar(id);
     }
-    
+
 }

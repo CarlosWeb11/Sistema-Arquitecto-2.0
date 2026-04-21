@@ -24,29 +24,25 @@ import org.springframework.stereotype.Component;
  *
  * @author Carlos Daniel
  */
-
-
 @Component
 @org.springframework.context.annotation.Profile("!test")
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
-    
+
     @Autowired
     private ApplicationContext context;
-    
+
     //Variable para los botones de agregar/eliminar del dialog 'Preeliminar'
     private boolean[] conceptosAgregados;
-    
-   MaterialDAO dao = new MaterialDAO();
-   //ID de los conceptos
-   List<Integer> id_pre = new ArrayList<>();
-   
-   //Arreglo de label para el panel de preeliminares
-   private JLabel[] labelsPreeliminares = new JLabel[5];
-   
-   
+
+    MaterialDAO dao = new MaterialDAO();
+    //ID de los conceptos
+    List<Integer> id_pre = new ArrayList<>();
+
+    //Arreglo de label para el panel de preeliminares
+    private JLabel[] labelsPreeliminares = new JLabel[5];
+
     public VentanaPrincipal() {
         initComponents();
         initCustom();
@@ -54,14 +50,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         prepararProyectos();
         prepararEventos();
         conceptosAgregados = new boolean[10];
-        
-        
-       
-        
-        
-        
-        
-        
+
     }
 
     /**
@@ -350,21 +339,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnNuevoProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProyectoActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) tblCimientos.getModel();
-         PrepararTabla(modelo,dao.listarCategoria("Cimientos"));
-         System.out.println("Hola putas");
+        PrepararTabla(modelo, dao.listarCategoria("Cimientos"));
+        System.out.println("Hola putas");
     }//GEN-LAST:event_btnNuevoProyectoActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        
+
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAgregarConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarConceptoActionPerformed
 
-    Preeliminares dialog = context.getBean(Preeliminares.class);
-    dialog.init(this, conceptosAgregados); // ✅ pasas los parámetros aquí
-    dialog.setLocationRelativeTo(this);
-    dialog.setVisible(true);
-      
+        Preeliminares dialog = context.getBean(Preeliminares.class);
+        dialog.init(this, conceptosAgregados); // ✅ pasas los parámetros aquí
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
     }//GEN-LAST:event_btnAgregarConceptoActionPerformed
 
     /**
@@ -440,57 +429,53 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cargarIconos();
         prepararPaneles();
         database.inicializarEstructura();
- 
+
     }
-    private void prepararPaneles(){
-        
-        
+
+    private void prepararPaneles() {
+
         CardLayout cardLayout = (CardLayout) pnlPrincipal.getLayout();
-        
-        
-        
+
         btnNuevoProyecto.addActionListener(e -> {
 
-                    cardLayout.show(pnlPrincipal, "cardMateriales");
-            });
+            cardLayout.show(pnlPrincipal, "cardMateriales");
+        });
         btnSiguiente.addActionListener(e -> {
 
-                    cardLayout.show(pnlPrincipal, "cardPreeliminares");
-            });
+            cardLayout.show(pnlPrincipal, "cardPreeliminares");
+        });
         btnRegresar.addActionListener(e -> {
 
-                    cardLayout.show(pnlPrincipal, "cardInicio");
-            });
-        
+            cardLayout.show(pnlPrincipal, "cardInicio");
+        });
+
     }
-    private void prepararEventos(){
-        
+
+    private void prepararEventos() {
+
         DefaultTableModel modeloCim = (DefaultTableModel) tblCimientos.getModel();
         DefaultTableModel modeloPol = (DefaultTableModel) tblPolvo.getModel();
         DefaultTableModel modeloMur = (DefaultTableModel) tblMuros.getModel();
-        
-       
-        
-         
+
         tbpMateriales.addChangeListener(e -> {
 
-        int index = tbpMateriales.getSelectedIndex();
+            int index = tbpMateriales.getSelectedIndex();
 
             switch (index) {
                 case 0:
-                    PrepararTabla(modeloCim,dao.listarCategoria("Cimientos"));
+                    PrepararTabla(modeloCim, dao.listarCategoria("Cimientos"));
                     break;
                 case 1:
-                    PrepararTabla(modeloPol,dao.listarCategoria("Polvo"));
+                    PrepararTabla(modeloPol, dao.listarCategoria("Polvo"));
                     break;
                 case 2:
-                    PrepararTabla(modeloMur,dao.listarCategoria("Muros"));
+                    PrepararTabla(modeloMur, dao.listarCategoria("Muros"));
                     break;
                 default:
                     break;
             }
 
-    });
+        });
 
     }
 
@@ -505,9 +490,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panelProyectos.revalidate();
         panelProyectos.repaint();
-        
-        
-        
+
     }
 
     private void cargarIconos() {
@@ -517,7 +500,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.err.println("No se encontró algún icono: " + e.getMessage());
         }
     }
-    
+
     public void PrepararTabla(DefaultTableModel tabla, List<Material> lista) {
         tabla.setRowCount(0);
         for (Material e : lista) {
@@ -531,105 +514,95 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             tabla.addRow(fila);
         }
     }
-    
-    public void agregarConceptos(int id){
+
+    public void agregarConceptos(int id) {
 
         System.out.println("Se llamo a la funcion");
-            switch(id){
-                case 0:
-                    labelsPreeliminares[id] = new JLabel();
-                    labelsPreeliminares[id].setText("1.1.-Excavacion");
-                    pnlConceptosTipo.add(labelsPreeliminares[id]);
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-    pnlConceptosTipo.repaint();
-                    
-                    break;
-                case 1:
-                    labelsPreeliminares[id] = new JLabel();
-                    labelsPreeliminares[id].setText("1.2 .-Relleno");
-                    pnlConceptosTipo.add(labelsPreeliminares[id]);
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-    pnlConceptosTipo.repaint();
-                     
-                    break;
-                case 2:
-                    labelsPreeliminares[id] = new JLabel();
-                    labelsPreeliminares[id].setText("1.3 .-Planta");
-                    pnlConceptosTipo.add(labelsPreeliminares[id]);pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-    pnlConceptosTipo.repaint();
-                    
-                    break;
-                case 3:
-                    labelsPreeliminares[id] = new JLabel();
-                    labelsPreeliminares[id].setText("1.4 .-Locura");
-                    pnlConceptosTipo.add(labelsPreeliminares[id]);
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-    pnlConceptosTipo.repaint();
-                    break;
-                case 4:
-                    labelsPreeliminares[id] = new JLabel();
-                    labelsPreeliminares[id].setText("1.5.-Pole ahi un ladrillo");
-                    pnlConceptosTipo.add(labelsPreeliminares[id]);
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-    pnlConceptosTipo.repaint();
-                    
-                    
-                    break;
-        }
-            
-            
-            
-        }
-    
-    public void EliminarConceptos(int id){
+        switch (id) {
+            case 0:
+                labelsPreeliminares[id] = new JLabel();
+                labelsPreeliminares[id].setText("1.1.-Excavacion");
+                pnlConceptosTipo.add(labelsPreeliminares[id]);
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
 
-        System.out.println("Se llamo a la funcion");
-            switch(id){
-                case 0:
-                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
-                    
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                    pnlConceptosTipo.repaint();
-                    
-                    break;
-                case 1:
-                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
-                    
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                    pnlConceptosTipo.repaint();;
-                     
-                    break;
-                case 2:
-                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
-                    
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                    pnlConceptosTipo.repaint();
-                    
-                    break;
-                case 3:
-                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
-                    
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                    pnlConceptosTipo.repaint();
-                    break;
-                case 4:
-                    pnlConceptosTipo.remove(labelsPreeliminares[id]);
-                    
-                    pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
-                    pnlConceptosTipo.repaint();
-                    
-                    
-                    break;
+                break;
+            case 1:
+                labelsPreeliminares[id] = new JLabel();
+                labelsPreeliminares[id].setText("1.2 .-Relleno");
+                pnlConceptosTipo.add(labelsPreeliminares[id]);
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+
+                break;
+            case 2:
+                labelsPreeliminares[id] = new JLabel();
+                labelsPreeliminares[id].setText("1.3 .-Planta");
+                pnlConceptosTipo.add(labelsPreeliminares[id]);
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+
+                break;
+            case 3:
+                labelsPreeliminares[id] = new JLabel();
+                labelsPreeliminares[id].setText("1.4 .-Locura");
+                pnlConceptosTipo.add(labelsPreeliminares[id]);
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+                break;
+            case 4:
+                labelsPreeliminares[id] = new JLabel();
+                labelsPreeliminares[id].setText("1.5.-Pole ahi un ladrillo");
+                pnlConceptosTipo.add(labelsPreeliminares[id]);
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+
+                break;
         }
-            
-            
-            
-        }
-        
+
     }
-    
-    
-    
-    
 
+    public void EliminarConceptos(int id) {
 
+        System.out.println("Se llamo a la funcion");
+        switch (id) {
+            case 0:
+                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+
+                break;
+            case 1:
+                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+                ;
+
+                break;
+            case 2:
+                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+
+                break;
+            case 3:
+                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+                break;
+            case 4:
+                pnlConceptosTipo.remove(labelsPreeliminares[id]);
+
+                pnlConceptosTipo.revalidate(); // ✅ Refresca el panel visualmente
+                pnlConceptosTipo.repaint();
+
+                break;
+        }
+
+    }
+
+}

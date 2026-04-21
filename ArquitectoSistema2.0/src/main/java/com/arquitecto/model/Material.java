@@ -8,7 +8,10 @@ package com.arquitecto.model;
  *
  * @author Carlos Daniel
  */
+
+//Clase contructora/espejo de material//
 public class Material {
+
     private int id;
     private String nombre;
     private String unidad1;
@@ -72,7 +75,5 @@ public class Material {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-    
-    
-    
+
 }

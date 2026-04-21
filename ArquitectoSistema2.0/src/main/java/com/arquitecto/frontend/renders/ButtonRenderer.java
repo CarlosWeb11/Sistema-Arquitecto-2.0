@@ -18,19 +18,20 @@ import org.springframework.context.annotation.Scope;
  */
 @Component
 @Scope("prototype")
-public class ButtonRenderer extends  JToggleButton implements TableCellRenderer{
-        public ButtonRenderer() {
+public class ButtonRenderer extends JToggleButton implements TableCellRenderer {
+
+    public ButtonRenderer() {
         setOpaque(true);
     }
-    
+
     @Override
     public java.awt.Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
-        
+
         // value es el estado (true=eliminar, false=agregar)
         boolean estado = (value != null && (boolean) value);
         setSelected(estado);
-        
+
         if (estado) {
             setText("Eliminar");
             setBackground(Color.RED);
@@ -40,8 +41,8 @@ public class ButtonRenderer extends  JToggleButton implements TableCellRenderer{
             setBackground(Color.GREEN);
             setForeground(Color.BLACK);
         }
-        
+
         return this;
     }
-    
+
 }
