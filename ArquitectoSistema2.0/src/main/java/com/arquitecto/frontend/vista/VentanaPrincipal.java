@@ -11,6 +11,8 @@ import com.arquitecto.frontend.components.BotonPrimario;
 import com.arquitecto.frontend.components.PanelFondo;
 import com.arquitecto.frontend.components.PanelSemitransparente;
 import com.arquitecto.frontend.components.ScrollPanelTransparente;
+import com.arquitecto.frontend.components.TablaTransparente;
+import com.arquitecto.frontend.components.TabbedPaneTransparente;
 import com.arquitecto.frontend.components.BotonSVG;
 import database.database;
 import java.awt.BorderLayout;
@@ -85,32 +87,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new ScrollPanelTransparente();
         panelProyectos = new javax.swing.JPanel();
         lblProyectostTitulo = new javax.swing.JLabel();
-        pnlMateriales = new javax.swing.JPanel();
+        pnlMateriales = new PanelFondo();
         pnlPrincipalMateriales = new javax.swing.JPanel();
         pnlCabecera = new javax.swing.JPanel();
         txtMateriales = new javax.swing.JLabel();
         pnlCentro = new javax.swing.JPanel();
-        pnlTabla = new javax.swing.JPanel();
-        pnlTablaCentro = new javax.swing.JPanel();
-        tbpMateriales = new javax.swing.JTabbedPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblCimientos = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblPolvo = new javax.swing.JTable();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tblMuros = new javax.swing.JTable();
+        pnlTabla = new PanelSemitransparente(50,20);
+        pnlTablaCentro = new PanelSemitransparente(100,20);
+        tbpMateriales = new TabbedPaneTransparente();
+        javax.swing.JScrollPane jScrollPane2 = new ScrollPanelTransparente();
+        tblCimientos = new TablaTransparente();
+        jScrollPane3 = new ScrollPanelTransparente();
+        tblPolvo = new TablaTransparente();
+        jScrollPane4 = new ScrollPanelTransparente();
+        tblMuros = new TablaTransparente();
         pnlBotones = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
-        btnSiguiente = new javax.swing.JButton();
-        pnlPreeliminares = new javax.swing.JPanel();
+        btnSiguiente = new BotonPrimario("Siguiente ->");
+        pnlPreeliminares = new PanelFondo();
         pnlPreliminaresPrincipal = new javax.swing.JPanel();
-        pnlConceptos = new javax.swing.JPanel();
+        pnlConceptos = new PanelSemitransparente( 100,20);
         pnlConceptosTitulo = new javax.swing.JPanel();
         txtTituloConceptos = new javax.swing.JLabel();
         pnlConceptosCuerpo = new javax.swing.JPanel();
         pnlConceptosAgregar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnAgregarConcepto = new javax.swing.JButton();
+        btnAgregarConcepto = new BotonPrimario();
         pnlConceptosBoton = new javax.swing.JPanel();
         btnRegresarMateriales = new javax.swing.JButton();
         pnlInformacion = new javax.swing.JPanel();
@@ -143,7 +145,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         pnlCuerpoBajoPre1 = new javax.swing.JPanel();
-        btnGuardar1_1 = new javax.swing.JButton();
+        javax.swing.JButton btnGuardar1_1 = new BotonPrimario();
         pnlPre2 = new javax.swing.JPanel();
         pnlPre3 = new javax.swing.JPanel();
         pnlPre4 = new javax.swing.JPanel();
@@ -220,10 +222,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlPrincipal.add(pnlInicio, "cardInicio");
 
-        pnlMateriales.setBackground(new java.awt.Color(255, 0, 51));
+        pnlMateriales.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
+        pnlPrincipalMateriales.setOpaque(false);
         pnlPrincipalMateriales.setLayout(new java.awt.BorderLayout());
 
+        pnlCabecera.setOpaque(false);
         pnlCabecera.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         txtMateriales.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
@@ -233,12 +237,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlPrincipalMateriales.add(pnlCabecera, java.awt.BorderLayout.NORTH);
 
+        pnlCentro.setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 25, 25, 25));
+        pnlCentro.setOpaque(false);
         pnlCentro.setLayout(new java.awt.GridLayout(1, 0));
 
+        pnlTabla.setBorder(javax.swing.BorderFactory.createEmptyBorder(40, 40, 40, 40));
+        pnlTabla.setOpaque(false);
         pnlTabla.setLayout(new java.awt.BorderLayout());
 
+        pnlTablaCentro.setBorder(javax.swing.BorderFactory.createEmptyBorder(40, 40, 40, 40));
+        pnlTablaCentro.setOpaque(false);
         pnlTablaCentro.setLayout(new java.awt.GridLayout(1, 0));
 
+        tblCimientos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblCimientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -254,6 +265,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         tbpMateriales.addTab("Cimientos", jScrollPane2);
 
+        tblPolvo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblPolvo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -269,6 +281,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         tbpMateriales.addTab("Polvo", jScrollPane3);
 
+        tblMuros.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblMuros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -288,6 +301,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlTabla.add(pnlTablaCentro, java.awt.BorderLayout.CENTER);
 
+        pnlBotones.setOpaque(false);
         pnlBotones.setLayout(new java.awt.BorderLayout());
 
         btnRegresar.setText("Regresar");
@@ -311,15 +325,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         pnlMaterialesLayout.setVerticalGroup(
             pnlMaterialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrincipalMateriales, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+            .addComponent(pnlPrincipalMateriales, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
         );
 
         pnlPrincipal.add(pnlMateriales, "cardMateriales");
 
-        pnlPreliminaresPrincipal.setLayout(new java.awt.BorderLayout());
+        pnlPreliminaresPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        pnlPreliminaresPrincipal.setOpaque(false);
+        pnlPreliminaresPrincipal.setLayout(new java.awt.BorderLayout(40, 0));
 
+        pnlConceptos.setOpaque(false);
         pnlConceptos.setLayout(new java.awt.BorderLayout());
 
+        pnlConceptosTitulo.setOpaque(false);
         pnlConceptosTitulo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         txtTituloConceptos.setFont(new java.awt.Font("Modern No. 20", 1, 24)); // NOI18N
@@ -329,10 +347,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlConceptos.add(pnlConceptosTitulo, java.awt.BorderLayout.NORTH);
 
+        pnlConceptosCuerpo.setOpaque(false);
         pnlConceptosCuerpo.setLayout(new javax.swing.BoxLayout(pnlConceptosCuerpo, javax.swing.BoxLayout.Y_AXIS));
 
+        pnlConceptosAgregar.setOpaque(false);
         pnlConceptosAgregar.setLayout(new javax.swing.BoxLayout(pnlConceptosAgregar, javax.swing.BoxLayout.Y_AXIS));
         pnlConceptosCuerpo.add(pnlConceptosAgregar);
+
+        jPanel1.setOpaque(false);
 
         btnAgregarConcepto.setText("+ Agregar Concepto");
         btnAgregarConcepto.addActionListener(this::btnAgregarConceptoActionPerformed);
@@ -342,6 +364,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlConceptos.add(pnlConceptosCuerpo, java.awt.BorderLayout.CENTER);
 
+        pnlConceptosBoton.setOpaque(false);
         pnlConceptosBoton.setLayout(new java.awt.BorderLayout());
 
         btnRegresarMateriales.setText("<- Regresar");
@@ -352,15 +375,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlPreliminaresPrincipal.add(pnlConceptos, java.awt.BorderLayout.WEST);
 
+        pnlInformacion.setOpaque(false);
         pnlInformacion.setLayout(new java.awt.CardLayout());
 
         pnlPre1.setLayout(new java.awt.GridLayout(1, 0));
 
-        pnlCuerpoPre1.setBackground(new java.awt.Color(51, 255, 0));
         pnlCuerpoPre1.setForeground(new java.awt.Color(0, 102, 51));
+        pnlCuerpoPre1.setOpaque(false);
         pnlCuerpoPre1.setLayout(new java.awt.BorderLayout());
 
         pnlCuerpoCabPre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlCuerpoCabPre1.setOpaque(false);
         pnlCuerpoCabPre1.setLayout(new java.awt.BorderLayout());
 
         pnlCuerpoCabTit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -422,6 +447,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlCuerpoPre1.add(pnlCuerpoCabPre1, java.awt.BorderLayout.NORTH);
 
+        pnlCuerpoCentPre1.setOpaque(false);
         pnlCuerpoCentPre1.setLayout(new java.awt.GridLayout(1, 0));
 
         tblMaterialPre.setModel(new javax.swing.table.DefaultTableModel(
@@ -496,6 +522,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlCuerpoPre1.add(pnlCuerpoCentPre1, java.awt.BorderLayout.CENTER);
 
+        pnlCuerpoBajoPre1.setOpaque(false);
         pnlCuerpoBajoPre1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnGuardar1_1.setText("Guardar");
@@ -510,61 +537,65 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlInformacion.add(pnlPre1, "cardPre1");
 
         pnlPre2.setBackground(new java.awt.Color(102, 255, 51));
+        pnlPre2.setOpaque(false);
 
         javax.swing.GroupLayout pnlPre2Layout = new javax.swing.GroupLayout(pnlPre2);
         pnlPre2.setLayout(pnlPre2Layout);
         pnlPre2Layout.setHorizontalGroup(
             pnlPre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 852, Short.MAX_VALUE)
+            .addGap(0, 712, Short.MAX_VALUE)
         );
         pnlPre2Layout.setVerticalGroup(
             pnlPre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGap(0, 513, Short.MAX_VALUE)
         );
 
         pnlInformacion.add(pnlPre2, "cardPre2");
 
         pnlPre3.setBackground(new java.awt.Color(0, 51, 204));
+        pnlPre3.setOpaque(false);
 
         javax.swing.GroupLayout pnlPre3Layout = new javax.swing.GroupLayout(pnlPre3);
         pnlPre3.setLayout(pnlPre3Layout);
         pnlPre3Layout.setHorizontalGroup(
             pnlPre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 852, Short.MAX_VALUE)
+            .addGap(0, 712, Short.MAX_VALUE)
         );
         pnlPre3Layout.setVerticalGroup(
             pnlPre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGap(0, 513, Short.MAX_VALUE)
         );
 
         pnlInformacion.add(pnlPre3, "cardPre3");
 
         pnlPre4.setBackground(new java.awt.Color(102, 102, 102));
+        pnlPre4.setOpaque(false);
 
         javax.swing.GroupLayout pnlPre4Layout = new javax.swing.GroupLayout(pnlPre4);
         pnlPre4.setLayout(pnlPre4Layout);
         pnlPre4Layout.setHorizontalGroup(
             pnlPre4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 852, Short.MAX_VALUE)
+            .addGap(0, 712, Short.MAX_VALUE)
         );
         pnlPre4Layout.setVerticalGroup(
             pnlPre4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGap(0, 513, Short.MAX_VALUE)
         );
 
         pnlInformacion.add(pnlPre4, "cardPre4");
 
         pnlPre5.setBackground(new java.awt.Color(0, 102, 102));
+        pnlPre5.setOpaque(false);
 
         javax.swing.GroupLayout pnlPre5Layout = new javax.swing.GroupLayout(pnlPre5);
         pnlPre5.setLayout(pnlPre5Layout);
         pnlPre5Layout.setHorizontalGroup(
             pnlPre5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 852, Short.MAX_VALUE)
+            .addGap(0, 712, Short.MAX_VALUE)
         );
         pnlPre5Layout.setVerticalGroup(
             pnlPre5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGap(0, 513, Short.MAX_VALUE)
         );
 
         pnlInformacion.add(pnlPre5, "cardPre5");
@@ -579,7 +610,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         pnlPreeliminaresLayout.setVerticalGroup(
             pnlPreeliminaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPreliminaresPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlPreliminaresPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
         );
 
         pnlPrincipal.add(pnlPreeliminares, "cardPreeliminares");
@@ -654,14 +685,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPre1;
     private javax.swing.JButton btnAgregarConcepto;
     private javax.swing.JButton btnFoto;
-    private javax.swing.JButton btnGuardar1_1;
     private javax.swing.JButton btnNuevoProyecto;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRegresarMateriales;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
