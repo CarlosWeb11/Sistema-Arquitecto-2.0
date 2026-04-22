@@ -7,21 +7,22 @@ package com.arquitecto.frontend.vista;
 import com.arquitecto.DAO.MaterialDAO;
 import com.arquitecto.model.Material;
 import com.arquitecto.frontend.dialog.Preeliminares;
-
+import com.arquitecto.frontend.components.BotonPrimario;
+import com.arquitecto.frontend.components.PanelFondo;
+import com.arquitecto.frontend.components.PanelSemitransparente;
+import com.arquitecto.frontend.components.ScrollPanelTransparente;
+import com.arquitecto.frontend.components.BotonSVG;
 import database.database;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -52,8 +53,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         initCustom();
+        
 
-        prepararProyectos();
+        //prepararProyectos();
         prepararEventos();
         conceptosAgregados = new boolean[10];
 
@@ -69,20 +71,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlPrincipal = new javax.swing.JPanel();
-        pnlInicio = new javax.swing.JPanel();
+        pnlInicio = new PanelFondo();
         pnlPrincipalCuerpo = new javax.swing.JPanel();
-        lblProyectos = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panelProyectos = new javax.swing.JPanel();
         pnlPrincipalCabecera = new javax.swing.JPanel();
         pnlCabeceraFoto = new javax.swing.JPanel();
-        btnFoto = new javax.swing.JButton();
+        btnFoto = new BotonSVG("arquitecto",100);
         pnlCabeceraArriba = new javax.swing.JPanel();
         txtBienvenido = new javax.swing.JLabel();
         txtNombreArc = new javax.swing.JLabel();
         pnlCabeceraAbajo = new javax.swing.JPanel();
-        pnlCabeceraBoton = new javax.swing.JPanel();
-        btnNuevoProyecto = new javax.swing.JButton();
+        pnlCabeceraBoton = new PanelSemitransparente(150,10);
+        btnNuevoProyecto = new BotonPrimario();
+        jScrollPane1 = new ScrollPanelTransparente();
+        panelProyectos = new javax.swing.JPanel();
+        lblProyectostTitulo = new javax.swing.JLabel();
         pnlMateriales = new javax.swing.JPanel();
         pnlPrincipalMateriales = new javax.swing.JPanel();
         pnlCabecera = new javax.swing.JPanel();
@@ -151,31 +153,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlPrincipal.setLayout(new java.awt.CardLayout());
 
+        pnlInicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 50, 50, 50));
         pnlInicio.setLayout(new java.awt.GridLayout(1, 0));
 
-        pnlPrincipalCuerpo.setLayout(new java.awt.BorderLayout());
+        pnlPrincipalCuerpo.setOpaque(false);
+        pnlPrincipalCuerpo.setLayout(new java.awt.BorderLayout(0, 20));
 
-        lblProyectos.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        lblProyectos.setText("Proyectos");
-        pnlPrincipalCuerpo.add(lblProyectos, java.awt.BorderLayout.NORTH);
+        pnlPrincipalCabecera.setOpaque(false);
+        pnlPrincipalCabecera.setLayout(new java.awt.BorderLayout(15, 30));
 
-        javax.swing.GroupLayout panelProyectosLayout = new javax.swing.GroupLayout(panelProyectos);
-        panelProyectos.setLayout(panelProyectosLayout);
-        panelProyectosLayout.setHorizontalGroup(
-            panelProyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 987, Short.MAX_VALUE)
-        );
-        panelProyectosLayout.setVerticalGroup(
-            panelProyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2721, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(panelProyectos);
-
-        pnlPrincipalCuerpo.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        pnlPrincipalCabecera.setLayout(new java.awt.BorderLayout());
-
+        pnlCabeceraFoto.setOpaque(false);
         pnlCabeceraFoto.setLayout(new java.awt.GridLayout(1, 0));
 
         btnFoto.addActionListener(this::btnFotoActionPerformed);
@@ -183,9 +170,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlPrincipalCabecera.add(pnlCabeceraFoto, java.awt.BorderLayout.WEST);
 
-        pnlCabeceraArriba.setLayout(new java.awt.GridLayout(2, 0));
+        pnlCabeceraArriba.setBorder(javax.swing.BorderFactory.createEmptyBorder(25, 1, 1, 1));
+        pnlCabeceraArriba.setOpaque(false);
+        pnlCabeceraArriba.setLayout(new javax.swing.BoxLayout(pnlCabeceraArriba, javax.swing.BoxLayout.Y_AXIS));
 
-        txtBienvenido.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
+        txtBienvenido.setFont(new java.awt.Font("Modern No. 20", 1, 48)); // NOI18N
         txtBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtBienvenido.setText("Bienvenido, Arquitecto");
         pnlCabeceraArriba.add(txtBienvenido);
@@ -196,8 +185,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlPrincipalCabecera.add(pnlCabeceraArriba, java.awt.BorderLayout.CENTER);
 
+        pnlCabeceraAbajo.setOpaque(false);
         pnlCabeceraAbajo.setLayout(new java.awt.GridLayout(0, 1));
 
+        pnlCabeceraBoton.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 1, 5, 1));
+        pnlCabeceraBoton.setOpaque(false);
         pnlCabeceraBoton.setLayout(new java.awt.BorderLayout(10, 10));
 
         btnNuevoProyecto.setText("+ Nuevo Proyecto");
@@ -209,6 +201,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlPrincipalCabecera.add(pnlCabeceraAbajo, java.awt.BorderLayout.SOUTH);
 
         pnlPrincipalCuerpo.add(pnlPrincipalCabecera, java.awt.BorderLayout.NORTH);
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        panelProyectos.setOpaque(false);
+        panelProyectos.setPreferredSize(new java.awt.Dimension(0, 0));
+        panelProyectos.setLayout(new java.awt.BorderLayout());
+
+        lblProyectostTitulo.setFont(new java.awt.Font("Modern No. 20", 0, 24)); // NOI18N
+        lblProyectostTitulo.setText("Proyectos");
+        panelProyectos.add(lblProyectostTitulo, java.awt.BorderLayout.NORTH);
+
+        jScrollPane1.setViewportView(panelProyectos);
+
+        pnlPrincipalCuerpo.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pnlInicio.add(pnlPrincipalCuerpo);
 
@@ -348,8 +354,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlInformacion.setLayout(new java.awt.CardLayout());
 
-        pnlPre1.setBackground(new java.awt.Color(255, 102, 102));
-        pnlPre1.setLayout(new java.awt.GridLayout());
+        pnlPre1.setLayout(new java.awt.GridLayout(1, 0));
 
         pnlCuerpoPre1.setBackground(new java.awt.Color(51, 255, 0));
         pnlCuerpoPre1.setForeground(new java.awt.Color(0, 102, 51));
@@ -408,13 +413,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE,\nACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.\n");
+        jTextArea1.setEnabled(false);
         jScrollPane5.setViewportView(jTextArea1);
+        jTextArea1.getAccessibleContext().setAccessibleName("");
+        jTextArea1.getAccessibleContext().setAccessibleDescription("");
 
         pnlCuerpoCabPre1.add(jScrollPane5, java.awt.BorderLayout.CENTER);
 
         pnlCuerpoPre1.add(pnlCuerpoCabPre1, java.awt.BorderLayout.NORTH);
 
-        pnlCuerpoCentPre1.setLayout(new java.awt.GridLayout());
+        pnlCuerpoCentPre1.setLayout(new java.awt.GridLayout(1, 0));
 
         tblMaterialPre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -584,7 +592,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
+            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -672,7 +680,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblConceptoPre1;
     private javax.swing.JLabel lblPrecioRes;
     private javax.swing.JLabel lblPresioDes;
-    private javax.swing.JLabel lblProyectos;
+    private javax.swing.JLabel lblProyectostTitulo;
     private javax.swing.JLabel lblTotalRes;
     private javax.swing.JLabel lblUnidadDes;
     private javax.swing.JLabel lblUnidadDes6;
@@ -724,7 +732,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void initCustom() {
-        cargarIconos();
+
         prepararPaneles();
         database.inicializarEstructura();
 
@@ -746,6 +754,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             cardLayout.show(pnlPrincipal, "cardInicio");
         });
+        
+        btnRegresarMateriales.addActionListener(e -> {
+
+            cardLayout.show(pnlPrincipal, "cardMateriales");
+        });
+        
 
         
         
@@ -798,13 +812,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
-    private void cargarIconos() {
-        try {
-            btnFoto.setIcon(new com.formdev.flatlaf.extras.FlatSVGIcon("icons/arquitecto.svg", 50, 50));
-        } catch (Exception e) {
-            System.err.println("No se encontró algún icono: " + e.getMessage());
-        }
-    }
+   
 
     public void PrepararTabla(DefaultTableModel tabla, List<Material> lista) {
         tabla.setRowCount(0);
