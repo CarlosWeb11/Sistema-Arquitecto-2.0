@@ -132,6 +132,9 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Modern No. 20" size="48" style="1"/>
                             </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
                             <Property name="horizontalAlignment" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="Bienvenido, Arquitecto"/>
                           </Properties>
@@ -205,9 +208,6 @@
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder/>
                       </Border>
-                    </Property>
-                    <Property name="viewportView" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="default"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -508,9 +508,9 @@
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                           <SubComponents>
                             <Component class="javax.swing.JButton" name="btnRegresar">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Regresar"/>
-                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BotonSecundario(&quot;Regresar&quot;, &quot;icons/flechaIzquierda.svg&quot;);"/>
+                              </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                   <BorderConstraints direction="West"/>
@@ -680,12 +680,12 @@
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                       <SubComponents>
                         <Component class="javax.swing.JButton" name="btnRegresarMateriales">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="&lt;- Regresar"/>
-                          </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarMaterialesActionPerformed"/>
                           </Events>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BotonSecundario(&quot;Regresar&quot;, &quot;icons/flechaIzquierda.svg&quot;);"/>
+                          </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                               <BorderConstraints direction="First"/>
@@ -709,6 +709,9 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
                   <SubComponents>
                     <Container class="javax.swing.JPanel" name="pnlPre1">
+                      <Properties>
+                        <Property name="opaque" type="boolean" value="false"/>
+                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                           <CardConstraints cardName="cardPre1"/>
@@ -721,6 +724,9 @@
                       </Layout>
                       <SubComponents>
                         <Container class="javax.swing.JScrollPane" name="ScrollPre1">
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                          </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -758,6 +764,7 @@
                                             <LineBorder/>
                                           </Border>
                                         </Property>
+                                        <Property name="opaque" type="boolean" value="false"/>
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -790,6 +797,9 @@
                                       </SubComponents>
                                     </Container>
                                     <Container class="javax.swing.JPanel" name="pnlCuerpoCabDesc">
+                                      <Properties>
+                                        <Property name="opaque" type="boolean" value="false"/>
+                                      </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                           <BorderConstraints direction="East"/>
@@ -853,6 +863,7 @@
                                     </Container>
                                     <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                                       <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
                                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                                       </AuxValues>
                                       <Constraints>
@@ -863,7 +874,7 @@
 
                                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                       <SubComponents>
-                                        <Component class="javax.swing.JTextArea" name="jTextArea1">
+                                        <Component class="javax.swing.JTextArea" name="txtaDescripcionPre">
                                           <Properties>
                                             <Property name="columns" type="int" value="20"/>
                                             <Property name="rows" type="int" value="5"/>
@@ -874,6 +885,9 @@
                                             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
                                             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
                                           </AccessibilityProperties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TextAreaTransparente();"/>
+                                          </AuxValues>
                                         </Component>
                                       </SubComponents>
                                     </Container>
@@ -895,11 +909,48 @@
                                   </Layout>
                                   <SubComponents>
                                     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TabbedPaneTransparente();"/>
+                                      </AuxValues>
 
                                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                                       <SubComponents>
+                                        <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                          </AuxValues>
+                                          <Constraints>
+                                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                              <JTabbedPaneConstraints tabName="Equipo">
+                                                <Property name="tabTitle" type="java.lang.String" value="Equipo"/>
+                                              </JTabbedPaneConstraints>
+                                            </Constraint>
+                                          </Constraints>
+
+                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                          <SubComponents>
+                                            <Component class="javax.swing.JTable" name="tblEquipoPre">
+                                              <Properties>
+                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                                  <Table columnCount="5" rowCount="4">
+                                                    <Column editable="true" title="Descripcion" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Unidad" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Cantidad" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Costo Unitario" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Total" type="java.lang.Object"/>
+                                                  </Table>
+                                                </Property>
+                                              </Properties>
+                                              <AuxValues>
+                                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                              </AuxValues>
+                                            </Component>
+                                          </SubComponents>
+                                        </Container>
                                         <Container class="javax.swing.JScrollPane" name="jScrollPane6">
                                           <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
                                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                                           </AuxValues>
                                           <Constraints>
@@ -951,11 +1002,15 @@
                                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                                 </Property>
                                               </Properties>
+                                              <AuxValues>
+                                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                              </AuxValues>
                                             </Component>
                                           </SubComponents>
                                         </Container>
                                         <Container class="javax.swing.JScrollPane" name="jScrollPane7">
                                           <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
                                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                                           </AuxValues>
                                           <Constraints>
@@ -968,7 +1023,7 @@
 
                                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                           <SubComponents>
-                                            <Component class="javax.swing.JTable" name="jTable2">
+                                            <Component class="javax.swing.JTable" name="tblManoPre">
                                               <Properties>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                                   <Table columnCount="5" rowCount="4">
@@ -980,11 +1035,15 @@
                                                   </Table>
                                                 </Property>
                                               </Properties>
+                                              <AuxValues>
+                                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                              </AuxValues>
                                             </Component>
                                           </SubComponents>
                                         </Container>
                                         <Container class="javax.swing.JScrollPane" name="jScrollPane8">
                                           <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
                                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                                           </AuxValues>
                                           <Constraints>
@@ -997,7 +1056,7 @@
 
                                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                           <SubComponents>
-                                            <Component class="javax.swing.JTable" name="jTable3">
+                                            <Component class="javax.swing.JTable" name="tblHerramientasPre">
                                               <Properties>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                                   <Table columnCount="5" rowCount="4">
@@ -1009,35 +1068,9 @@
                                                   </Table>
                                                 </Property>
                                               </Properties>
-                                            </Component>
-                                          </SubComponents>
-                                        </Container>
-                                        <Container class="javax.swing.JScrollPane" name="jScrollPane9">
-                                          <AuxValues>
-                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                                          </AuxValues>
-                                          <Constraints>
-                                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                                              <JTabbedPaneConstraints tabName="Equipo">
-                                                <Property name="tabTitle" type="java.lang.String" value="Equipo"/>
-                                              </JTabbedPaneConstraints>
-                                            </Constraint>
-                                          </Constraints>
-
-                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                                          <SubComponents>
-                                            <Component class="javax.swing.JTable" name="jTable1">
-                                              <Properties>
-                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                                  <Table columnCount="5" rowCount="4">
-                                                    <Column editable="true" title="Descripcion" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Unidad" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Costo Unitario" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Total" type="java.lang.Object"/>
-                                                  </Table>
-                                                </Property>
-                                              </Properties>
+                                              <AuxValues>
+                                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                              </AuxValues>
                                             </Component>
                                           </SubComponents>
                                         </Container>

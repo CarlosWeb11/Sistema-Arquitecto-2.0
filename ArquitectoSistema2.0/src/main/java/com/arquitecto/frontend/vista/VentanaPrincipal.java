@@ -13,7 +13,9 @@ import com.arquitecto.frontend.components.PanelSemitransparente;
 import com.arquitecto.frontend.components.ScrollPanelTransparente;
 import com.arquitecto.frontend.components.TablaTransparente;
 import com.arquitecto.frontend.components.TabbedPaneTransparente;
+import com.arquitecto.frontend.components.TextAreaTransparente;
 import com.arquitecto.frontend.components.BotonSVG;
+import com.arquitecto.frontend.components.BotonSecundario;
 import database.database;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -102,7 +104,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane4 = new ScrollPanelTransparente();
         tblMuros = new TablaTransparente();
         pnlBotones = new javax.swing.JPanel();
-        btnRegresar = new javax.swing.JButton();
+        btnRegresar = new BotonSecundario("Regresar", "icons/flechaIzquierda.svg");
         btnSiguiente = new BotonPrimario("Siguiente ->");
         pnlPreeliminares = new PanelFondo();
         pnlPreliminaresPrincipal = new javax.swing.JPanel();
@@ -114,10 +116,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnAgregarConcepto = new BotonPrimario();
         pnlConceptosBoton = new javax.swing.JPanel();
-        btnRegresarMateriales = new javax.swing.JButton();
+        btnRegresarMateriales = new BotonSecundario("Regresar", "icons/flechaIzquierda.svg");
         pnlInformacion = new javax.swing.JPanel();
         pnlPre1 = new javax.swing.JPanel();
-        ScrollPre1 = new javax.swing.JScrollPane();
+        ScrollPre1 = new ScrollPanelTransparente();
         pnlCuerpoPre1 = new javax.swing.JPanel();
         pnlCuerpoCabPre1 = new javax.swing.JPanel();
         pnlCuerpoCabTit = new javax.swing.JPanel();
@@ -132,18 +134,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblPrecioRes = new javax.swing.JLabel();
         lblUnidadDes6 = new javax.swing.JLabel();
         lblTotalRes = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane5 = new ScrollPanelTransparente();
+        txtaDescripcionPre = new TextAreaTransparente();
         pnlCuerpoCentPre1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tblMaterialPre = new javax.swing.JTable();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabbedPane1 = new TabbedPaneTransparente();
+        jScrollPane9 = new ScrollPanelTransparente();
+        tblEquipoPre = new TablaTransparente();
+        jScrollPane6 = new ScrollPanelTransparente();
+        tblMaterialPre = new TablaTransparente();
+        jScrollPane7 = new ScrollPanelTransparente();
+        tblManoPre = new TablaTransparente();
+        jScrollPane8 = new ScrollPanelTransparente();
+        tblHerramientasPre = new TablaTransparente();
         pnlCuerpoBajoPre1 = new javax.swing.JPanel();
         javax.swing.JButton btnGuardar1_1 = new BotonPrimario();
         pnlPre2 = new javax.swing.JPanel();
@@ -177,6 +179,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCabeceraArriba.setLayout(new javax.swing.BoxLayout(pnlCabeceraArriba, javax.swing.BoxLayout.Y_AXIS));
 
         txtBienvenido.setFont(new java.awt.Font("Modern No. 20", 1, 48)); // NOI18N
+        txtBienvenido.setForeground(new java.awt.Color(255, 255, 255));
         txtBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtBienvenido.setText("Bienvenido, Arquitecto");
         pnlCabeceraArriba.add(txtBienvenido);
@@ -303,8 +306,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlBotones.setOpaque(false);
         pnlBotones.setLayout(new java.awt.BorderLayout());
-
-        btnRegresar.setText("Regresar");
         pnlBotones.add(btnRegresar, java.awt.BorderLayout.WEST);
 
         btnSiguiente.setText("Siguiente");
@@ -367,7 +368,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlConceptosBoton.setOpaque(false);
         pnlConceptosBoton.setLayout(new java.awt.BorderLayout());
 
-        btnRegresarMateriales.setText("<- Regresar");
         btnRegresarMateriales.addActionListener(this::btnRegresarMaterialesActionPerformed);
         pnlConceptosBoton.add(btnRegresarMateriales, java.awt.BorderLayout.PAGE_START);
 
@@ -378,6 +378,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlInformacion.setOpaque(false);
         pnlInformacion.setLayout(new java.awt.CardLayout());
 
+        pnlPre1.setOpaque(false);
         pnlPre1.setLayout(new java.awt.GridLayout(1, 0));
 
         pnlCuerpoPre1.setForeground(new java.awt.Color(0, 102, 51));
@@ -389,6 +390,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCuerpoCabPre1.setLayout(new java.awt.BorderLayout());
 
         pnlCuerpoCabTit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlCuerpoCabTit.setOpaque(false);
         pnlCuerpoCabTit.setLayout(new java.awt.BorderLayout());
 
         lblConceptoPre.setText("CLAVE");
@@ -399,6 +401,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlCuerpoCabPre1.add(pnlCuerpoCabTit, java.awt.BorderLayout.WEST);
 
+        pnlCuerpoCabDesc.setOpaque(false);
         pnlCuerpoCabDesc.setLayout(new java.awt.GridLayout(4, 2));
 
         lblUnidadDes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -435,13 +438,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlCuerpoCabPre1.add(pnlCuerpoCabDesc, java.awt.BorderLayout.EAST);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE,\nACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.\n");
-        jTextArea1.setEnabled(false);
-        jScrollPane5.setViewportView(jTextArea1);
-        jTextArea1.getAccessibleContext().setAccessibleName("");
-        jTextArea1.getAccessibleContext().setAccessibleDescription("");
+        txtaDescripcionPre.setColumns(20);
+        txtaDescripcionPre.setRows(5);
+        txtaDescripcionPre.setText("DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE,\nACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.\n");
+        txtaDescripcionPre.setEnabled(false);
+        jScrollPane5.setViewportView(txtaDescripcionPre);
+        txtaDescripcionPre.getAccessibleContext().setAccessibleName("");
+        txtaDescripcionPre.getAccessibleContext().setAccessibleDescription("");
 
         pnlCuerpoCabPre1.add(jScrollPane5, java.awt.BorderLayout.CENTER);
 
@@ -449,6 +452,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlCuerpoCentPre1.setOpaque(false);
         pnlCuerpoCentPre1.setLayout(new java.awt.GridLayout(1, 0));
+
+        tblEquipoPre.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
+            }
+        ));
+        jScrollPane9.setViewportView(tblEquipoPre);
+
+        jTabbedPane1.addTab("Equipo", jScrollPane9);
 
         tblMaterialPre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -473,7 +491,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Material", jScrollPane6);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblManoPre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -484,11 +502,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
             }
         ));
-        jScrollPane7.setViewportView(jTable2);
+        jScrollPane7.setViewportView(tblManoPre);
 
         jTabbedPane1.addTab("Mano de obra", jScrollPane7);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblHerramientasPre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -499,24 +517,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
             }
         ));
-        jScrollPane8.setViewportView(jTable3);
+        jScrollPane8.setViewportView(tblHerramientasPre);
 
         jTabbedPane1.addTab("Herramienta", jScrollPane8);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
-            }
-        ));
-        jScrollPane9.setViewportView(jTable1);
-
-        jTabbedPane1.addTab("Equipo", jScrollPane9);
 
         pnlCuerpoCentPre1.add(jTabbedPane1);
 
@@ -699,10 +702,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblCantidadDes;
     private javax.swing.JLabel lblCantidadRes;
     private javax.swing.JLabel lblConceptoPre;
@@ -750,6 +749,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlTabla;
     private javax.swing.JPanel pnlTablaCentro;
     private javax.swing.JTable tblCimientos;
+    private javax.swing.JTable tblEquipoPre;
+    private javax.swing.JTable tblHerramientasPre;
+    private javax.swing.JTable tblManoPre;
     private javax.swing.JTable tblMaterialPre;
     private javax.swing.JTable tblMuros;
     private javax.swing.JTable tblPolvo;
@@ -758,6 +760,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel txtMateriales;
     private javax.swing.JLabel txtNombreArc;
     private javax.swing.JLabel txtTituloConceptos;
+    private javax.swing.JTextArea txtaDescripcionPre;
     // End of variables declaration//GEN-END:variables
 
     private void initCustom() {

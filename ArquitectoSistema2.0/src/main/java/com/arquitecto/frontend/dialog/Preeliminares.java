@@ -8,12 +8,15 @@ import com.arquitecto.frontend.editor.ButtonEditor;
 import com.arquitecto.frontend.renders.ButtonRenderer;
 import com.arquitecto.frontend.vista.VentanaPrincipal;
 import java.util.List;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import com.arquitecto.frontend.components.TablaTransparente;
+import com.arquitecto.frontend.components.PanelFondo;
+import com.arquitecto.frontend.components.ScrollPanelTransparente;
+import com.arquitecto.frontend.components.BotonPrimario;
 
 /**
  *
@@ -60,23 +63,26 @@ public class Preeliminares extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlPrincipalPreliminares = new javax.swing.JPanel();
+        pnlPrincipalPreliminares = new PanelFondo();
         pnlPreliminares = new javax.swing.JPanel();
         pnlTitulo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
         pnlConceptosPre = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblPreliminares = new javax.swing.JTable();
+        jScrollPane3 = new ScrollPanelTransparente();
+        tblPreliminares = new TablaTransparente();
         pnlBotones = new javax.swing.JPanel();
-        btnAgregarPreliminar = new javax.swing.JButton();
+        btnAgregarPreliminar = new BotonPrimario();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        pnlPreliminares.setOpaque(false);
         pnlPreliminares.setLayout(new java.awt.BorderLayout());
 
+        pnlTitulo.setOpaque(false);
         pnlTitulo.setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setOpaque(false);
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         txtTitulo.setFont(new java.awt.Font("Modern No. 20", 1, 36)); // NOI18N
@@ -88,6 +94,7 @@ public class Preeliminares extends javax.swing.JDialog {
 
         pnlPreliminares.add(pnlTitulo, java.awt.BorderLayout.NORTH);
 
+        pnlConceptosPre.setOpaque(false);
         pnlConceptosPre.setLayout(new java.awt.GridLayout(1, 0));
 
         tblPreliminares.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,6 +117,7 @@ public class Preeliminares extends javax.swing.JDialog {
 
         pnlPreliminares.add(pnlConceptosPre, java.awt.BorderLayout.CENTER);
 
+        pnlBotones.setOpaque(false);
         pnlBotones.setLayout(new java.awt.BorderLayout());
 
         btnAgregarPreliminar.setText("Confirmar");
