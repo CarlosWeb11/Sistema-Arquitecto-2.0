@@ -5,6 +5,7 @@
 package com.arquitecto.frontend.vista;
 
 import com.arquitecto.DAO.MaterialDAO;
+import com.arquitecto.frontend.components.BotonLista;
 import com.arquitecto.model.Material;
 import com.arquitecto.frontend.dialog.Preeliminares;
 import com.arquitecto.frontend.components.BotonPrimario;
@@ -22,10 +23,12 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +65,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         //prepararProyectos();
         prepararEventos();
         conceptosAgregados = new boolean[10];
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setMinimumSize(new Dimension(1024, 600));
 
     }
 
@@ -349,11 +354,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlConceptos.add(pnlConceptosTitulo, java.awt.BorderLayout.NORTH);
 
         pnlConceptosCuerpo.setOpaque(false);
-        pnlConceptosCuerpo.setLayout(new javax.swing.BoxLayout(pnlConceptosCuerpo, javax.swing.BoxLayout.Y_AXIS));
+        pnlConceptosCuerpo.setLayout(new java.awt.BorderLayout());
 
         pnlConceptosAgregar.setOpaque(false);
-        pnlConceptosAgregar.setLayout(new javax.swing.BoxLayout(pnlConceptosAgregar, javax.swing.BoxLayout.Y_AXIS));
-        pnlConceptosCuerpo.add(pnlConceptosAgregar);
+        pnlConceptosAgregar.setLayout(new java.awt.GridLayout(0, 1));
+        pnlConceptosCuerpo.add(pnlConceptosAgregar, java.awt.BorderLayout.NORTH);
 
         jPanel1.setOpaque(false);
 
@@ -361,7 +366,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAgregarConcepto.addActionListener(this::btnAgregarConceptoActionPerformed);
         jPanel1.add(btnAgregarConcepto);
 
-        pnlConceptosCuerpo.add(jPanel1);
+        pnlConceptosCuerpo.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pnlConceptos.add(pnlConceptosCuerpo, java.awt.BorderLayout.CENTER);
 
@@ -767,6 +772,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         prepararPaneles();
         database.inicializarEstructura();
+        pnlConceptosAgregar.setLayout(new GridLayout(0, 1, 0, 2));
 
     }
 
@@ -868,11 +874,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         switch (id) {
             case 0:
 
-                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                JButton btnPre1 = new JButton("1.1 Acabado");
+                panelesPreeliminares[id] = new JPanel();
+                panelesPreeliminares[id].setLayout(new BoxLayout(panelesPreeliminares[id], BoxLayout.Y_AXIS));
+                panelesPreeliminares[id].setAlignmentX(LEFT_ALIGNMENT);
+                panelesPreeliminares[id].setOpaque(false);
+                JButton btnPre1 = new BotonLista("1.1 Acabado");
+                btnPre1.setOpaque(false);
                 panelesPreeliminares[id].add(btnPre1);
 
-                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.add(panelesPreeliminares[id]);
                 btnPre1.addActionListener(e -> {
 
                     cardLayoutPre.show(pnlInformacion, "cardPre1");
@@ -889,8 +899,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
                 break;
             case 1:
-                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                JButton btnPre2 = new JButton("1.2 .-Relleno");
+                panelesPreeliminares[id] = new JPanel();
+                panelesPreeliminares[id].setLayout(new BoxLayout(panelesPreeliminares[id], BoxLayout.Y_AXIS));
+                panelesPreeliminares[id].setAlignmentX(LEFT_ALIGNMENT);
+                panelesPreeliminares[id].setOpaque(false);
+                JButton btnPre2 = new BotonLista("1.2 .-Relleno");
+                btnPre2.setOpaque(false);
                 panelesPreeliminares[id].add(btnPre2);
                 btnPre2.addActionListener(e -> {
 
@@ -901,15 +915,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 panelesPreeliminares[id].getPreferredSize().height)
                 );
 
-                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.add(panelesPreeliminares[id]);
                 pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
                 pnlConceptosAgregar.repaint();
 
                 id_panelesPre.add(1);
                 break;
             case 2:
-                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                JButton btnPre3 = new JButton("1.3 .-Excavacion");
+                panelesPreeliminares[id] = new JPanel();
+                panelesPreeliminares[id].setLayout(new BoxLayout(panelesPreeliminares[id], BoxLayout.Y_AXIS));
+                panelesPreeliminares[id].setAlignmentX(LEFT_ALIGNMENT);
+                panelesPreeliminares[id].setOpaque(false);
+                JButton btnPre3 = new BotonLista("1.3 .-Excavacion");
+                btnPre3.setOpaque(false);
                 panelesPreeliminares[id].add(btnPre3);
                 btnPre3.addActionListener(e -> {
 
@@ -920,15 +938,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 panelesPreeliminares[id].getPreferredSize().height)
                 );
 
-                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.add(panelesPreeliminares[id]);
                 pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
                 pnlConceptosAgregar.repaint();
 
                 id_panelesPre.add(2);
                 break;
             case 3:
-                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                JButton btnPre4 = new JButton("1.5 .-ahhh");
+                panelesPreeliminares[id] = new JPanel();
+                panelesPreeliminares[id].setLayout(new BoxLayout(panelesPreeliminares[id], BoxLayout.Y_AXIS));
+                panelesPreeliminares[id].setAlignmentX(LEFT_ALIGNMENT);
+                panelesPreeliminares[id].setOpaque(false);
+                JButton btnPre4 = new BotonLista("1.5 .-ahhh");
+                btnPre4.setOpaque(false);
                 panelesPreeliminares[id].add(btnPre4);
                 btnPre4.addActionListener(e -> {
 
@@ -939,15 +961,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 panelesPreeliminares[id].getPreferredSize().height)
                 );
 
-                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.add(panelesPreeliminares[id]);
                 pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
                 pnlConceptosAgregar.repaint();
                 
                 id_panelesPre.add(3);
                 break;
             case 4:
-                panelesPreeliminares[id] = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                JButton btnPre5 = new JButton("1.5 .-ahi va disque un ladrillo");
+                panelesPreeliminares[id] = new JPanel();
+                panelesPreeliminares[id].setLayout(new BoxLayout(panelesPreeliminares[id], BoxLayout.Y_AXIS));
+                panelesPreeliminares[id].setAlignmentX(LEFT_ALIGNMENT);
+                panelesPreeliminares[id].setOpaque(false);
+                JButton btnPre5 = new BotonLista("1.5 .-ahi va disque un ladrillo");
+                btnPre5.setOpaque(false);
                 panelesPreeliminares[id].add(btnPre5);
                 btnPre5.addActionListener(e -> {
 
@@ -958,7 +984,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 panelesPreeliminares[id].getPreferredSize().height)
                 );
 
-                pnlConceptosAgregar.add(panelesPreeliminares[id], BorderLayout.CENTER);
+                pnlConceptosAgregar.add(panelesPreeliminares[id]);
                 pnlConceptosAgregar.revalidate(); // ✅ Refresca el panel visualmente
                 pnlConceptosAgregar.repaint();
 
