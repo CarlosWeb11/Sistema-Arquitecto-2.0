@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MaterialDAO {
 
     //Inserta un nuevo material en la base de datos//
@@ -103,7 +105,7 @@ public class MaterialDAO {
             ps.setDouble(3, c.getPu());
             ps.setString(4, c.getUnidad2());
             ps.setDouble(5, c.getPu2());
-            ps.setInt(6, c.getId()); // 👈 IMPORTANTE
+            ps.setInt(6, c.getId()); 
 
             ps.executeUpdate();
 

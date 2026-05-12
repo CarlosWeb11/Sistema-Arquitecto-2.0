@@ -17,19 +17,23 @@ import com.arquitecto.frontend.components.TabbedPaneTransparente;
 import com.arquitecto.frontend.components.TextAreaTransparente;
 import com.arquitecto.frontend.components.BotonSVG;
 import com.arquitecto.frontend.components.BotonSecundario;
+import com.arquitecto.frontend.dialog.NuevoProyecto;
+import com.arquitecto.frontend.themes.Temas;
+
 import database.database;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -51,12 +55,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     //Variable para los botones de agregar/eliminar del dialog 'Preeliminar'
     private boolean[] conceptosAgregados;
 
-    MaterialDAO dao = new MaterialDAO();
+    @Autowired
+    private MaterialDAO dao;
 
     ArrayList<Integer> id_panelesPre = new ArrayList<>();
 
     private JPanel[] panelesPreeliminares = new JPanel[5];
-
+    
+    //Variables para guardar la fila modificada dentro de las tablas
+    Set<Integer> filasPolvo = new HashSet<>();
+    Set<Integer> filasCimientos = new HashSet<>();
+    Set<Integer> filasMuros = new HashSet<>();
+    
+    
     public VentanaPrincipal() {
         initComponents();
         initCustom();
@@ -90,7 +101,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtNombreArc = new javax.swing.JLabel();
         pnlCabeceraAbajo = new javax.swing.JPanel();
         pnlCabeceraBoton = new PanelSemitransparente(150,10);
-        btnNuevoProyecto = new BotonPrimario();
+        btnNuevoProyecto = new BotonPrimario(Temas.AZUL);
+        btnBaseDeDatos = new BotonPrimario(Temas.VERDE);
         jScrollPane1 = new ScrollPanelTransparente();
         panelProyectos = new javax.swing.JPanel();
         lblProyectostTitulo = new javax.swing.JLabel();
@@ -110,7 +122,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tblMuros = new TablaTransparente();
         pnlBotones = new javax.swing.JPanel();
         btnRegresar = new BotonSecundario("Regresar", "icons/flechaIzquierda.svg");
-        btnSiguiente = new BotonPrimario("Siguiente ->");
+        btnGuardarBase = new BotonPrimario(Temas.AZUL);
         pnlPreeliminares = new PanelFondo();
         pnlPreliminaresPrincipal = new javax.swing.JPanel();
         pnlConceptos = new PanelSemitransparente( 100,20);
@@ -119,7 +131,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlConceptosCuerpo = new javax.swing.JPanel();
         pnlConceptosAgregar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnAgregarConcepto = new BotonPrimario();
+        btnAgregarConcepto = new BotonPrimario(Temas.AZUL);
         pnlConceptosBoton = new javax.swing.JPanel();
         btnRegresarMateriales = new BotonSecundario("Regresar", "icons/flechaIzquierda.svg");
         pnlInformacion = new javax.swing.JPanel();
@@ -152,11 +164,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane8 = new ScrollPanelTransparente();
         tblHerramientasPre = new TablaTransparente();
         pnlCuerpoBajoPre1 = new javax.swing.JPanel();
-        javax.swing.JButton btnGuardar1_1 = new BotonPrimario();
-        pnlPre2 = new javax.swing.JPanel();
-        pnlPre3 = new javax.swing.JPanel();
-        pnlPre4 = new javax.swing.JPanel();
-        pnlPre5 = new javax.swing.JPanel();
+        javax.swing.JButton btnGuardar1_1 = new BotonPrimario(Temas.AZUL);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -206,6 +214,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnNuevoProyecto.addActionListener(this::btnNuevoProyectoActionPerformed);
         pnlCabeceraBoton.add(btnNuevoProyecto, java.awt.BorderLayout.WEST);
 
+        btnBaseDeDatos.setText("Base de datos");
+        pnlCabeceraBoton.add(btnBaseDeDatos, java.awt.BorderLayout.EAST);
+
         pnlCabeceraAbajo.add(pnlCabeceraBoton);
 
         pnlPrincipalCabecera.add(pnlCabeceraAbajo, java.awt.BorderLayout.SOUTH);
@@ -249,24 +260,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCentro.setOpaque(false);
         pnlCentro.setLayout(new java.awt.GridLayout(1, 0));
 
-        pnlTabla.setBorder(javax.swing.BorderFactory.createEmptyBorder(40, 40, 40, 40));
+        pnlTabla.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         pnlTabla.setOpaque(false);
         pnlTabla.setLayout(new java.awt.BorderLayout());
 
-        pnlTablaCentro.setBorder(javax.swing.BorderFactory.createEmptyBorder(40, 40, 40, 40));
+        pnlTablaCentro.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         pnlTablaCentro.setOpaque(false);
         pnlTablaCentro.setLayout(new java.awt.GridLayout(1, 0));
 
         tblCimientos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblCimientos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Materia Prima", "Unidad 1", "P.U", "Title 4", "P.U"
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Title 5", "P.U"
             }
         ));
         jScrollPane2.setViewportView(tblCimientos);
@@ -276,13 +287,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tblPolvo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblPolvo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
             }
         ));
         jScrollPane3.setViewportView(tblPolvo);
@@ -292,13 +303,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tblMuros.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblMuros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
             }
         ));
         jScrollPane4.setViewportView(tblMuros);
@@ -313,9 +324,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlBotones.setLayout(new java.awt.BorderLayout());
         pnlBotones.add(btnRegresar, java.awt.BorderLayout.WEST);
 
-        btnSiguiente.setText("Siguiente");
-        btnSiguiente.addActionListener(this::btnSiguienteActionPerformed);
-        pnlBotones.add(btnSiguiente, java.awt.BorderLayout.EAST);
+        btnGuardarBase.setText("Guardar");
+        btnGuardarBase.addActionListener(this::btnGuardarBaseActionPerformed);
+        pnlBotones.add(btnGuardarBase, java.awt.BorderLayout.EAST);
 
         pnlTabla.add(pnlBotones, java.awt.BorderLayout.SOUTH);
 
@@ -544,70 +555,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pnlInformacion.add(pnlPre1, "cardPre1");
 
-        pnlPre2.setBackground(new java.awt.Color(102, 255, 51));
-        pnlPre2.setOpaque(false);
-
-        javax.swing.GroupLayout pnlPre2Layout = new javax.swing.GroupLayout(pnlPre2);
-        pnlPre2.setLayout(pnlPre2Layout);
-        pnlPre2Layout.setHorizontalGroup(
-            pnlPre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
-        );
-        pnlPre2Layout.setVerticalGroup(
-            pnlPre2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
-        );
-
-        pnlInformacion.add(pnlPre2, "cardPre2");
-
-        pnlPre3.setBackground(new java.awt.Color(0, 51, 204));
-        pnlPre3.setOpaque(false);
-
-        javax.swing.GroupLayout pnlPre3Layout = new javax.swing.GroupLayout(pnlPre3);
-        pnlPre3.setLayout(pnlPre3Layout);
-        pnlPre3Layout.setHorizontalGroup(
-            pnlPre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
-        );
-        pnlPre3Layout.setVerticalGroup(
-            pnlPre3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
-        );
-
-        pnlInformacion.add(pnlPre3, "cardPre3");
-
-        pnlPre4.setBackground(new java.awt.Color(102, 102, 102));
-        pnlPre4.setOpaque(false);
-
-        javax.swing.GroupLayout pnlPre4Layout = new javax.swing.GroupLayout(pnlPre4);
-        pnlPre4.setLayout(pnlPre4Layout);
-        pnlPre4Layout.setHorizontalGroup(
-            pnlPre4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
-        );
-        pnlPre4Layout.setVerticalGroup(
-            pnlPre4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
-        );
-
-        pnlInformacion.add(pnlPre4, "cardPre4");
-
-        pnlPre5.setBackground(new java.awt.Color(0, 102, 102));
-        pnlPre5.setOpaque(false);
-
-        javax.swing.GroupLayout pnlPre5Layout = new javax.swing.GroupLayout(pnlPre5);
-        pnlPre5.setLayout(pnlPre5Layout);
-        pnlPre5Layout.setHorizontalGroup(
-            pnlPre5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
-        );
-        pnlPre5Layout.setVerticalGroup(
-            pnlPre5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
-        );
-
-        pnlInformacion.add(pnlPre5, "cardPre5");
-
         pnlPreliminaresPrincipal.add(pnlInformacion, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout pnlPreeliminaresLayout = new javax.swing.GroupLayout(pnlPreeliminares);
@@ -627,7 +574,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -642,14 +589,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnNuevoProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProyectoActionPerformed
+       NuevoProyecto np = context.getBean(NuevoProyecto.class);
+       np.init();
+       np.setVisible(true);
+        
+       
+       /*
         DefaultTableModel modelo = (DefaultTableModel) tblCimientos.getModel();
         PrepararTabla(modelo, dao.listarCategoria("Cimientos"));
-        System.out.println("Hola putas");
+        System.out.println("Hola putas");*/
     }//GEN-LAST:event_btnNuevoProyectoActionPerformed
 
-    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+    private void btnGuardarBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBaseActionPerformed
 
-    }//GEN-LAST:event_btnSiguienteActionPerformed
+        guardarFilas(tblPolvo, filasPolvo);
+    guardarFilas(tblCimientos, filasCimientos);
+    guardarFilas(tblMuros, filasMuros);
+    }//GEN-LAST:event_btnGuardarBaseActionPerformed
 
     private void btnRegresarMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMaterialesActionPerformed
 
@@ -692,11 +648,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ScrollPre1;
     private javax.swing.JButton btnAgregarConcepto;
+    private javax.swing.JButton btnBaseDeDatos;
     private javax.swing.JButton btnFoto;
+    private javax.swing.JButton btnGuardarBase;
     private javax.swing.JButton btnNuevoProyecto;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRegresarMateriales;
-    private javax.swing.JButton btnSiguiente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
@@ -741,10 +698,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlInicio;
     private javax.swing.JPanel pnlMateriales;
     private javax.swing.JPanel pnlPre1;
-    private javax.swing.JPanel pnlPre2;
-    private javax.swing.JPanel pnlPre3;
-    private javax.swing.JPanel pnlPre4;
-    private javax.swing.JPanel pnlPre5;
     private javax.swing.JPanel pnlPreeliminares;
     private javax.swing.JPanel pnlPreliminaresPrincipal;
     private javax.swing.JPanel pnlPrincipal;
@@ -774,38 +727,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         database.inicializarEstructura();
         pnlConceptosAgregar.setLayout(new GridLayout(0, 1, 0, 2));
 
+        agregarListenerModificaciones(tblPolvo, filasPolvo);
+        agregarListenerModificaciones(tblCimientos, filasCimientos);
+        agregarListenerModificaciones(tblMuros, filasMuros);
+
     }
 
     private void prepararPaneles() {
 
         CardLayout cardLayout = (CardLayout) pnlPrincipal.getLayout();
-
-        btnNuevoProyecto.addActionListener(e -> {
-
+        
+        btnBaseDeDatos.addActionListener(e ->{
+            
             cardLayout.show(pnlPrincipal, "cardMateriales");
         });
-        btnSiguiente.addActionListener(e -> {
-
-            cardLayout.show(pnlPrincipal, "cardPreeliminares");
-        });
-        btnRegresar.addActionListener(e -> {
-
+        btnRegresar.addActionListener(e ->{
+            
             cardLayout.show(pnlPrincipal, "cardInicio");
         });
-        
-        btnRegresarMateriales.addActionListener(e -> {
-
-            cardLayout.show(pnlPrincipal, "cardMateriales");
+        btnGuardarBase.addActionListener(e ->{
+            
+            cardLayout.show(pnlPrincipal, "cardInicio");
         });
-        
-
-        
-        
-        
-
-        
-        
-
+      
     }
 
     private void prepararEventos() {
@@ -820,13 +764,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             switch (index) {
                 case 0:
-                    PrepararTabla(modeloCim, dao.listarCategoria("Cimientos"));
+                    PrepararTabla(tblCimientos,modeloCim, dao.listarCategoria("Cimientos"));
                     break;
                 case 1:
-                    PrepararTabla(modeloPol, dao.listarCategoria("Polvo"));
+                    PrepararTabla(tblPolvo,modeloPol, dao.listarCategoria("Polvo"));
                     break;
                 case 2:
-                    PrepararTabla(modeloMur, dao.listarCategoria("Muros"));
+                    PrepararTabla(tblMuros,modeloMur, dao.listarCategoria("Muros"));
                     break;
                 default:
                     break;
@@ -852,19 +796,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
    
 
-    public void PrepararTabla(DefaultTableModel tabla, List<Material> lista) {
-        tabla.setRowCount(0);
-        for (Material e : lista) {
-            Object[] fila = {
-                e.getNombre(),
-                e.getUnidad1(),
-                e.getPu(),
-                e.getUnidad2(),
-                e.getPu2()
-            };
-            tabla.addRow(fila);
-        }
+   public void PrepararTabla(JTable tabla, DefaultTableModel modelo, List<Material> lista) {
+    modelo.setRowCount(0);
+    for (Material e : lista) {
+        Object[] fila = {
+            e.getId(),
+            e.getNombre(),
+            e.getUnidad1(),
+            e.getPu(),
+            e.getUnidad2(),
+            e.getPu2(),
+        };
+        modelo.addRow(fila);
     }
+    
+   
+    tabla.getColumnModel().getColumn(0).setMinWidth(0);
+    tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+    tabla.getColumnModel().getColumn(0).setWidth(0);
+}
 
     public void agregarConceptos(int id) {
 
@@ -1040,5 +990,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
 
     }
+    
+    
+   private void agregarListenerModificaciones(JTable tabla, Set<Integer> filasModificadas) {
+    tabla.getModel().addTableModelListener(e -> {
+        if (e.getType() == TableModelEvent.UPDATE) {
+            filasModificadas.add(e.getFirstRow());
+        }
+    });
+    
+    
+    
+    
+}
+   private void guardarFilas(JTable tabla, Set<Integer> filasModificadas) {
+    for (int fila : filasModificadas) {
+        Material m = new Material();
+        m.setId(Integer.parseInt(tabla.getValueAt(fila, 0).toString()));
+        m.setNombre(tabla.getValueAt(fila, 1).toString());
+        m.setUnidad1(tabla.getValueAt(fila, 2).toString());
+        m.setPu(Double.parseDouble(tabla.getValueAt(fila, 3).toString()));
+        m.setUnidad2(tabla.getValueAt(fila, 4).toString());
+        m.setPu2(Double.parseDouble(tabla.getValueAt(fila, 5).toString()));
+        
+        
+        
+        dao.actualizar(m);
+    }
+    filasModificadas.clear();
+}
 
 }

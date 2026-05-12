@@ -16,24 +16,20 @@ import org.springframework.stereotype.Component;
  * @author Carlos Daniel
  */
 
-@Component
 public class BotonPrimario extends JButton {
     
     private String texto;
     
-    public BotonPrimario() {
-        configurarEstilo();
+    public BotonPrimario(Color fondo) {
+        configurarEstilo(fondo);
     }
     
-    public BotonPrimario(String texto) {
-        this.texto = texto;
-        configurarEstilo();
-    }
     
-    private void configurarEstilo() {
+    
+    private void configurarEstilo(Color fondo) {
          // Color azul brillante del fondo
-        setBackground(new Color(30, 120, 255));
-        setForeground(Color.WHITE);
+        setBackground(fondo);
+        setForeground(Color.white);
 
         // Fuente
         setFont(new Font("Segoe UI", Font.BOLD, 14));

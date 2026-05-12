@@ -17,6 +17,7 @@ import com.arquitecto.frontend.components.TablaTransparente;
 import com.arquitecto.frontend.components.PanelFondo;
 import com.arquitecto.frontend.components.ScrollPanelTransparente;
 import com.arquitecto.frontend.components.BotonPrimario;
+import com.arquitecto.frontend.themes.Temas;
 
 /**
  *
@@ -72,7 +73,7 @@ public class Preeliminares extends javax.swing.JDialog {
         jScrollPane3 = new ScrollPanelTransparente();
         tblPreliminares = new TablaTransparente();
         pnlBotones = new javax.swing.JPanel();
-        btnAgregarPreliminar = new BotonPrimario();
+        btnAgregarPreliminar = new BotonPrimario(Temas.AZUL);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
