@@ -10,6 +10,7 @@ import com.arquitecto.frontend.components.BotonPrimario;
 import com.arquitecto.frontend.components.PanelFondo;
 import com.arquitecto.frontend.components.PanelSemitransparente;
 import com.arquitecto.frontend.themes.Temas;
+import com.arquitecto.frontend.vista.VentanaPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
@@ -21,6 +22,10 @@ public class NuevoProyecto extends javax.swing.JDialog {
     /**
      * Creates new form NuevoProyecto
      */
+    
+    @Autowired
+    VentanaPrincipal ventanaPrincipal;
+    
     @Autowired
     public NuevoProyecto() {
         super( );
@@ -65,7 +70,7 @@ public class NuevoProyecto extends javax.swing.JDialog {
 
         pnlCentro.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 50, 50, 20));
         pnlCentro.setOpaque(false);
-        pnlCentro.setLayout(new java.awt.GridLayout());
+        pnlCentro.setLayout(new java.awt.GridLayout(1, 0));
         pnlCentro.add(txtNombre);
 
         pnlPrincipal.add(pnlCentro, java.awt.BorderLayout.CENTER);
@@ -79,6 +84,7 @@ public class NuevoProyecto extends javax.swing.JDialog {
         pnllBotones.add(btnCancelar, java.awt.BorderLayout.WEST);
 
         btnCrear.setText("Crear");
+        btnCrear.addActionListener(this::btnCrearActionPerformed);
         pnllBotones.add(btnCrear, java.awt.BorderLayout.EAST);
 
         pnlPrincipal.add(pnllBotones, java.awt.BorderLayout.SOUTH);
@@ -102,6 +108,11 @@ public class NuevoProyecto extends javax.swing.JDialog {
         this.dispose();;
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+       ventanaPrincipal.mostrarPanel("cardPreeliminares");
+       this.dispose();
+    }//GEN-LAST:event_btnCrearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -117,4 +128,7 @@ public class NuevoProyecto extends javax.swing.JDialog {
     private javax.swing.JPanel pnllBotones;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+public String getNombre(){
+    return txtNombre.getText();
+}
 }

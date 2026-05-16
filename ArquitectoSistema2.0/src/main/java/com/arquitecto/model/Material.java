@@ -19,6 +19,18 @@ public class Material {
     private String unidad2;
     private double pu2;
     private String categoria;
+    private double peso_teorico;
+
+    public double getPeso_teorico() {
+        return peso_teorico;
+    }
+
+    public void setPeso_teorico(double peso_teorico) {
+        this.peso_teorico = peso_teorico;
+    }
+
+   
+
 
     public int getId() {
         return id;
@@ -76,4 +88,5 @@ public class Material {
         this.categoria = categoria;
     }
 
+  
 }

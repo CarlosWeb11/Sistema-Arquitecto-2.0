@@ -18,6 +18,8 @@ import com.arquitecto.frontend.components.TextAreaTransparente;
 import com.arquitecto.frontend.components.BotonSVG;
 import com.arquitecto.frontend.components.BotonSecundario;
 import com.arquitecto.frontend.dialog.NuevoProyecto;
+import com.arquitecto.frontend.editor.ComboBoxEditor;
+import com.arquitecto.frontend.renders.ComboBoxRenderer;
 import com.arquitecto.frontend.themes.Temas;
 
 import database.database;
@@ -32,6 +34,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
@@ -66,18 +69,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Set<Integer> filasPolvo = new HashSet<>();
     Set<Integer> filasCimientos = new HashSet<>();
     Set<Integer> filasMuros = new HashSet<>();
-    
+    Set<Integer> filasAceros = new HashSet<>();
+    Set<Integer> filasMaderas = new HashSet<>();
+    Set<Integer> filasMaquinaria = new HashSet<>();
+    Set<Integer> filasFerreteria = new HashSet<>();
+    Set<Integer> filasPisos = new HashSet<>();
+    Set<Integer> filasPinturas = new HashSet<>();
     
     public VentanaPrincipal() {
         initComponents();
         initCustom();
         
 
-        //prepararProyectos();
-        prepararEventos();
+        
+        
         conceptosAgregados = new boolean[10];
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(1024, 600));
+        System.out.println(new java.io.File("inventario_usb.db").getAbsolutePath());
 
     }
 
@@ -113,13 +122,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCentro = new javax.swing.JPanel();
         pnlTabla = new PanelSemitransparente(50,20);
         pnlTablaCentro = new PanelSemitransparente(100,20);
-        tbpMateriales = new TabbedPaneTransparente();
+        jtbBaseDeDatos = new TabbedPaneTransparente();
         javax.swing.JScrollPane jScrollPane2 = new ScrollPanelTransparente();
         tblCimientos = new TablaTransparente();
         jScrollPane3 = new ScrollPanelTransparente();
         tblPolvo = new TablaTransparente();
         jScrollPane4 = new ScrollPanelTransparente();
         tblMuros = new TablaTransparente();
+        jScrollPane10 = new ScrollPanelTransparente();
+        tblAceros = new TablaTransparente();
+        jScrollPane11 = new ScrollPanelTransparente();
+        tblMaderas = new TablaTransparente();
+        jScrollPane12 = new ScrollPanelTransparente();
+        tblMaquinaria = new TablaTransparente();
+        jScrollPane13 = new ScrollPanelTransparente();
+        tblFerreteria = new TablaTransparente();
+        jScrollPane16 = new ScrollPanelTransparente();
+        tblPisos = new TablaTransparente();
+        jScrollPane17 = new ScrollPanelTransparente();
+        tblPinturas = new TablaTransparente();
         pnlBotones = new javax.swing.JPanel();
         btnRegresar = new BotonSecundario("Regresar", "icons/flechaIzquierda.svg");
         btnGuardarBase = new BotonPrimario(Temas.AZUL);
@@ -154,15 +175,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane5 = new ScrollPanelTransparente();
         txtaDescripcionPre = new TextAreaTransparente();
         pnlCuerpoCentPre1 = new javax.swing.JPanel();
-        jTabbedPane1 = new TabbedPaneTransparente();
-        jScrollPane9 = new ScrollPanelTransparente();
-        tblEquipoPre = new TablaTransparente();
+        jtbPreeliminares = new TabbedPaneTransparente();
         jScrollPane6 = new ScrollPanelTransparente();
-        tblMaterialPre = new TablaTransparente();
+        tblMaterialPre1 = new TablaTransparente();
         jScrollPane7 = new ScrollPanelTransparente();
-        tblManoPre = new TablaTransparente();
+        tblManoPre1 = new TablaTransparente();
         jScrollPane8 = new ScrollPanelTransparente();
-        tblHerramientasPre = new TablaTransparente();
+        tblHerramientasPre1 = new TablaTransparente();
+        jScrollPane9 = new ScrollPanelTransparente();
+        tblEquipoPre1 = new TablaTransparente();
         pnlCuerpoBajoPre1 = new javax.swing.JPanel();
         javax.swing.JButton btnGuardar1_1 = new BotonPrimario(Temas.AZUL);
 
@@ -215,6 +236,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCabeceraBoton.add(btnNuevoProyecto, java.awt.BorderLayout.WEST);
 
         btnBaseDeDatos.setText("Base de datos");
+        btnBaseDeDatos.addActionListener(this::btnBaseDeDatosActionPerformed);
         pnlCabeceraBoton.add(btnBaseDeDatos, java.awt.BorderLayout.EAST);
 
         pnlCabeceraAbajo.add(pnlCabeceraBoton);
@@ -277,12 +299,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Materia Prima", "Unidad 1", "P.U", "Title 5", "P.U"
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
             }
         ));
         jScrollPane2.setViewportView(tblCimientos);
 
-        tbpMateriales.addTab("Cimientos", jScrollPane2);
+        jtbBaseDeDatos.addTab("Cimientos", jScrollPane2);
 
         tblPolvo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblPolvo.setModel(new javax.swing.table.DefaultTableModel(
@@ -298,7 +320,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblPolvo);
 
-        tbpMateriales.addTab("Polvo", jScrollPane3);
+        jtbBaseDeDatos.addTab("Polvo y Agregados", jScrollPane3);
 
         tblMuros.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tblMuros.setModel(new javax.swing.table.DefaultTableModel(
@@ -314,9 +336,106 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tblMuros);
 
-        tbpMateriales.addTab("Muros", jScrollPane4);
+        jtbBaseDeDatos.addTab("Muros", jScrollPane4);
 
-        pnlTablaCentro.add(tbpMateriales);
+        tblAceros.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tblAceros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Materia Prima", "Unidad 1", "PU", "Unidad 2", "PU", "Peso teórico"
+            }
+        ));
+        tblAceros.setOpaque(false);
+        jScrollPane10.setViewportView(tblAceros);
+
+        jtbBaseDeDatos.addTab("Aceros", jScrollPane10);
+
+        tblMaderas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tblMaderas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
+            }
+        ));
+        jScrollPane11.setViewportView(tblMaderas);
+
+        jtbBaseDeDatos.addTab("Maderas", jScrollPane11);
+
+        tblMaquinaria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tblMaquinaria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
+            }
+        ));
+        jScrollPane12.setViewportView(tblMaquinaria);
+
+        jtbBaseDeDatos.addTab("Maquinaria", jScrollPane12);
+
+        tblFerreteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tblFerreteria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
+            }
+        ));
+        jScrollPane13.setViewportView(tblFerreteria);
+
+        jtbBaseDeDatos.addTab("Ferreteria", jScrollPane13);
+
+        tblPisos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tblPisos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
+            }
+        ));
+        jScrollPane16.setViewportView(tblPisos);
+
+        jtbBaseDeDatos.addTab("Pisos Y Azulejos", jScrollPane16);
+
+        tblPinturas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tblPinturas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Materia Prima", "Unidad 1", "P.U", "Unidad 2", "P.U"
+            }
+        ));
+        jScrollPane17.setViewportView(tblPinturas);
+
+        jtbBaseDeDatos.addTab("Pinturas", jScrollPane17);
+
+        pnlTablaCentro.add(jtbBaseDeDatos);
 
         pnlTabla.add(pnlTablaCentro, java.awt.BorderLayout.CENTER);
 
@@ -456,7 +575,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         txtaDescripcionPre.setColumns(20);
         txtaDescripcionPre.setRows(5);
-        txtaDescripcionPre.setText("DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE,\nACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.\n");
+        txtaDescripcionPre.setText("DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE, ACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.\n\n");
         txtaDescripcionPre.setEnabled(false);
         jScrollPane5.setViewportView(txtaDescripcionPre);
         txtaDescripcionPre.getAccessibleContext().setAccessibleName("");
@@ -469,45 +588,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pnlCuerpoCentPre1.setOpaque(false);
         pnlCuerpoCentPre1.setLayout(new java.awt.GridLayout(1, 0));
 
-        tblEquipoPre.setModel(new javax.swing.table.DefaultTableModel(
+        tblMaterialPre1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
-            }
-        ));
-        jScrollPane9.setViewportView(tblEquipoPre);
-
-        jTabbedPane1.addTab("Equipo", jScrollPane9);
-
-        tblMaterialPre.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
+                "ID", "Unidad 1", "Unidad 2", "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, false
+                true, true, true, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(tblMaterialPre);
+        jScrollPane6.setViewportView(tblMaterialPre1);
 
-        jTabbedPane1.addTab("Material", jScrollPane6);
+        jtbPreeliminares.addTab("Material", jScrollPane6);
 
-        tblManoPre.setModel(new javax.swing.table.DefaultTableModel(
+        tblManoPre1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -518,11 +622,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
             }
         ));
-        jScrollPane7.setViewportView(tblManoPre);
+        jScrollPane7.setViewportView(tblManoPre1);
 
-        jTabbedPane1.addTab("Mano de obra", jScrollPane7);
+        jtbPreeliminares.addTab("Mano de obra", jScrollPane7);
 
-        tblHerramientasPre.setModel(new javax.swing.table.DefaultTableModel(
+        tblHerramientasPre1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -533,11 +637,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
             }
         ));
-        jScrollPane8.setViewportView(tblHerramientasPre);
+        jScrollPane8.setViewportView(tblHerramientasPre1);
 
-        jTabbedPane1.addTab("Herramienta", jScrollPane8);
+        jtbPreeliminares.addTab("Herramienta", jScrollPane8);
 
-        pnlCuerpoCentPre1.add(jTabbedPane1);
+        tblEquipoPre1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Descripcion", "Unidad", "Cantidad", "Costo Unitario", "Total"
+            }
+        ));
+        jScrollPane9.setViewportView(tblEquipoPre1);
+
+        jtbPreeliminares.addTab("Equipo", jScrollPane9);
+
+        pnlCuerpoCentPre1.add(jtbPreeliminares);
 
         pnlCuerpoPre1.add(pnlCuerpoCentPre1, java.awt.BorderLayout.CENTER);
 
@@ -602,9 +721,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnGuardarBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarBaseActionPerformed
 
-        guardarFilas(tblPolvo, filasPolvo);
+    guardarFilas(tblPolvo, filasPolvo);
     guardarFilas(tblCimientos, filasCimientos);
     guardarFilas(tblMuros, filasMuros);
+    guardarFilas(tblMaderas, filasMaderas);
+    guardarFilas(tblMaquinaria, filasMaquinaria);
+    guardarFilas(tblFerreteria, filasFerreteria);
+    guardarFilas(tblPisos, filasPisos);
+    guardarFilas(tblPinturas, filasPinturas);
+    
     }//GEN-LAST:event_btnGuardarBaseActionPerformed
 
     private void btnRegresarMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMaterialesActionPerformed
@@ -619,6 +744,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         dialog.setVisible(true);
 
     }//GEN-LAST:event_btnAgregarConceptoActionPerformed
+
+    private void btnBaseDeDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaseDeDatosActionPerformed
+      PrepararTabla(tblCimientos,(DefaultTableModel) tblCimientos.getModel(), dao.listarCategoria("CIMIENTOS"));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBaseDeDatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -656,6 +786,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresarMateriales;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -663,7 +799,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jtbBaseDeDatos;
+    private javax.swing.JTabbedPane jtbPreeliminares;
     private javax.swing.JLabel lblCantidadDes;
     private javax.swing.JLabel lblCantidadRes;
     private javax.swing.JLabel lblConceptoPre;
@@ -706,14 +843,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPrincipalMateriales;
     private javax.swing.JPanel pnlTabla;
     private javax.swing.JPanel pnlTablaCentro;
+    private javax.swing.JTable tblAceros;
     private javax.swing.JTable tblCimientos;
-    private javax.swing.JTable tblEquipoPre;
-    private javax.swing.JTable tblHerramientasPre;
-    private javax.swing.JTable tblManoPre;
-    private javax.swing.JTable tblMaterialPre;
+    private javax.swing.JTable tblEquipoPre1;
+    private javax.swing.JTable tblFerreteria;
+    private javax.swing.JTable tblHerramientasPre1;
+    private javax.swing.JTable tblMaderas;
+    private javax.swing.JTable tblManoPre1;
+    private javax.swing.JTable tblMaquinaria;
+    private javax.swing.JTable tblMaterialPre1;
     private javax.swing.JTable tblMuros;
+    private javax.swing.JTable tblPinturas;
+    private javax.swing.JTable tblPisos;
     private javax.swing.JTable tblPolvo;
-    private javax.swing.JTabbedPane tbpMateriales;
     private javax.swing.JLabel txtBienvenido;
     private javax.swing.JLabel txtMateriales;
     private javax.swing.JLabel txtNombreArc;
@@ -724,12 +866,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initCustom() {
 
         prepararPaneles();
+        prepararEventos();
+        
         database.inicializarEstructura();
         pnlConceptosAgregar.setLayout(new GridLayout(0, 1, 0, 2));
+        
+        
 
         agregarListenerModificaciones(tblPolvo, filasPolvo);
         agregarListenerModificaciones(tblCimientos, filasCimientos);
         agregarListenerModificaciones(tblMuros, filasMuros);
+        agregarListenerModificaciones(tblAceros, filasAceros);
+        
+        agregarListenerModificaciones(tblMaderas, filasMaderas);
+        agregarListenerModificaciones(tblMaquinaria, filasMaquinaria);
+        agregarListenerModificaciones(tblFerreteria, filasFerreteria);
+        
+        agregarListenerModificaciones(tblPisos, filasPisos);
+        agregarListenerModificaciones(tblPinturas, filasPinturas);
+        
 
     }
 
@@ -751,50 +906,96 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
       
     }
+    
+    private void preparaEventosPre(JTabbedPane jtb,JTable material, JTable mano,JTable herramienta, JTable equipo ){
+        DefaultTableModel modelo = (DefaultTableModel) material.getModel();
+        
+        
+        jtb.addChangeListener(e -> {
+            int index = jtb.getSelectedIndex();
+            
+            switch(index){
+                case 0:
+                    List<Material> lista = new ArrayList<>();
+                    lista.add(dao.buscarPorNombre("varilla corrugada 3/8\""));
+                    PrepararTablaPre(material,modelo, lista);
+                    material.getColumnModel().getColumn(4).setCellRenderer(new ComboBoxRenderer());
+                    material.getColumnModel().getColumn(4).setCellEditor(new ComboBoxEditor(dao));
+                   
+                    break;
+            }
+            
+            
+        });
+    }
 
     private void prepararEventos() {
 
         DefaultTableModel modeloCim = (DefaultTableModel) tblCimientos.getModel();
         DefaultTableModel modeloPol = (DefaultTableModel) tblPolvo.getModel();
         DefaultTableModel modeloMur = (DefaultTableModel) tblMuros.getModel();
+        DefaultTableModel modeloAcer = (DefaultTableModel) tblAceros.getModel();
+        DefaultTableModel modeloMad = (DefaultTableModel) tblMaderas.getModel();
+        DefaultTableModel modeloMaqui = (DefaultTableModel) tblMaquinaria.getModel();
+        DefaultTableModel modeloFerre = (DefaultTableModel) tblFerreteria.getModel();
+        
+        DefaultTableModel modeloPisos = (DefaultTableModel) tblPisos.getModel();
+        DefaultTableModel modeloPint = (DefaultTableModel) tblPinturas.getModel();
+        
 
-        tbpMateriales.addChangeListener(e -> {
+        jtbBaseDeDatos.addChangeListener(e -> {
 
-            int index = tbpMateriales.getSelectedIndex();
+            int index = jtbBaseDeDatos.getSelectedIndex();
 
             switch (index) {
                 case 0:
-                    PrepararTabla(tblCimientos,modeloCim, dao.listarCategoria("Cimientos"));
+                    PrepararTabla(tblCimientos, modeloCim, dao.listarCategoria("CIMIENTOS"));
                     break;
                 case 1:
-                    PrepararTabla(tblPolvo,modeloPol, dao.listarCategoria("Polvo"));
+                    PrepararTabla(tblPolvo, modeloPol, dao.listarCategoria("POLVOS Y AGREGADOS"));
                     break;
                 case 2:
-                    PrepararTabla(tblMuros,modeloMur, dao.listarCategoria("Muros"));
+                    PrepararTabla(tblMuros, modeloMur, dao.listarCategoria("MUROS"));
                     break;
+                case 3:
+                    PrepararTablaAcero(tblAceros, modeloAcer, dao.listarCategoria("ACEROS"));
+                    break;
+                    
+                case 4:
+                    PrepararTabla(tblMaderas, modeloMad, dao.listarCategoria("MADERA"));
+                    break;
+                    
+                case 5:
+                    PrepararTabla(tblMaquinaria, modeloMaqui, dao.listarCategoria("MAQUINARIA"));
+                    break;
+                    
+                case 6:
+                    PrepararTabla(tblFerreteria, modeloFerre, dao.listarCategoria("FERRETERIA"));
+                    break;
+                case 7:
+                    PrepararTabla(tblPisos, modeloPisos, dao.listarCategoria("PISOS Y AZULEJOS"));
+                    break;
+                    
+                case 8:
+                    PrepararTabla(tblPinturas, modeloPint, dao.listarCategoria("PINTURAS"));
+                    break;
+                    
                 default:
                     break;
             }
+            guardarFilas(tblCimientos, filasCimientos);
+            guardarFilas(tblPolvo, filasPolvo);
+            guardarFilas(tblMuros, filasMuros);
+            guardarFilas(tblAceros, filasAceros);
+            guardarFilas(tblMaderas, filasMaderas);
+            guardarFilas(tblMaquinaria, filasMaquinaria);
+            guardarFilas(tblFerreteria, filasFerreteria);
+            guardarFilas(tblPisos, filasPisos);
+            guardarFilas(tblPinturas, filasPinturas);
 
         });
 
     }
-
-    private void prepararProyectos() {
-        panelProyectos.setLayout(new BoxLayout(panelProyectos, BoxLayout.Y_AXIS));
-
-        panelProyectos.removeAll();
-
-        panelProyectos.add(new ProyectoCard("Casa Moderna", "22/04/2024", "$150,000"));
-        panelProyectos.add(new ProyectoCard("Edificio Comercial", "22/04/2024", "$750,000"));
-        panelProyectos.add(new ProyectoCard("Renovación Oficina", "10/04/2024", "$85,000"));
-
-        panelProyectos.revalidate();
-        panelProyectos.repaint();
-
-    }
-
-   
 
    public void PrepararTabla(JTable tabla, DefaultTableModel modelo, List<Material> lista) {
     modelo.setRowCount(0);
@@ -814,6 +1015,59 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     tabla.getColumnModel().getColumn(0).setMinWidth(0);
     tabla.getColumnModel().getColumn(0).setMaxWidth(0);
     tabla.getColumnModel().getColumn(0).setWidth(0);
+}
+   public void PrepararTablaAcero(JTable tabla, DefaultTableModel modelo, List<Material> lista){
+       modelo.setRowCount(0);
+    for (Material e : lista) {
+        Object[] fila = {
+            e.getId(),
+            e.getNombre(),
+            e.getUnidad1(),
+            e.getPu(),
+            e.getUnidad2(),
+            e.getPu2(),
+            e.getPeso_teorico()
+        };
+        modelo.addRow(fila);
+    }
+    
+   
+    tabla.getColumnModel().getColumn(0).setMinWidth(0);
+    tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+    tabla.getColumnModel().getColumn(0).setWidth(0);
+   }
+   
+    public void PrepararTablaPre(JTable tabla, DefaultTableModel modelo, List<Material> lista) {
+        modelo.setRowCount(0);
+        for (Material e : lista) {
+            Object[] fila = {
+                e.getId(), // dato
+                e.getUnidad1(), // dato oculto
+                e.getUnidad2(), // dato oculto
+                e.getNombre(), // dato
+                "", // unidad seleccionada (empieza vacía)
+                0.0, // cantidad (el usuario la llena)
+                0.0,
+                0.0,
+            };
+            modelo.addRow(fila);
+        }
+        
+        //Hacemos invisible las casillas id e unidad 1 y unidad 2
+    tabla.getColumnModel().getColumn(0).setMinWidth(0);
+    tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+    tabla.getColumnModel().getColumn(0).setWidth(0);
+    
+    tabla.getColumnModel().getColumn(1).setMinWidth(0);
+    tabla.getColumnModel().getColumn(1).setMaxWidth(0);
+    tabla.getColumnModel().getColumn(1).setWidth(0);
+    
+    tabla.getColumnModel().getColumn(2).setMinWidth(0);
+    tabla.getColumnModel().getColumn(2).setMaxWidth(0);
+    tabla.getColumnModel().getColumn(2).setWidth(0);
+    
+   
+    
 }
 
     public void agregarConceptos(int id) {
@@ -836,6 +1090,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 btnPre1.addActionListener(e -> {
 
                     cardLayoutPre.show(pnlInformacion, "cardPre1");
+                    
+                    System.out.println("Se presiono el boton");
+                    
                 });
 
                 panelesPreeliminares[id].setMaximumSize(
@@ -1019,5 +1276,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     filasModificadas.clear();
 }
+   
+   public void mostrarPanel(String card) {
+    CardLayout cardLayout = (CardLayout) pnlPrincipal.getLayout();
+    
+    preparaEventosPre(jtbPreeliminares,tblMaterialPre1,tblManoPre1, tblHerramientasPre1, tblEquipoPre1);
+    cardLayout.show(pnlPrincipal, card);
+    
+    
+}
+   
+   
 
 }

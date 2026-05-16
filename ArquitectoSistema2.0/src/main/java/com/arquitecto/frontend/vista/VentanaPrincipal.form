@@ -200,6 +200,9 @@
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Base de datos"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBaseDeDatosActionPerformed"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BotonPrimario(Temas.VERDE);"/>
                               </AuxValues>
@@ -387,7 +390,7 @@
                             <Property name="rows" type="int" value="1"/>
                           </Layout>
                           <SubComponents>
-                            <Container class="javax.swing.JTabbedPane" name="tbpMateriales">
+                            <Container class="javax.swing.JTabbedPane" name="jtbBaseDeDatos">
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TabbedPaneTransparente();"/>
                               </AuxValues>
@@ -422,9 +425,46 @@
                                             <Column editable="true" title="Materia Prima" type="java.lang.Object"/>
                                             <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
                                             <Column editable="true" title="P.U" type="java.lang.Object"/>
-                                            <Column editable="true" title="Title 5" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
                                             <Column editable="true" title="P.U" type="java.lang.Object"/>
                                           </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                         </Property>
                                       </Properties>
                                       <AuxValues>
@@ -440,8 +480,8 @@
                                   </AuxValues>
                                   <Constraints>
                                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                                      <JTabbedPaneConstraints tabName="Polvo">
-                                        <Property name="tabTitle" type="java.lang.String" value="Polvo"/>
+                                      <JTabbedPaneConstraints tabName="Polvo y Agregados">
+                                        <Property name="tabTitle" type="java.lang.String" value="Polvo y Agregados"/>
                                       </JTabbedPaneConstraints>
                                     </Constraint>
                                   </Constraints>
@@ -499,6 +539,457 @@
                                             <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
                                             <Column editable="true" title="P.U" type="java.lang.Object"/>
                                           </Table>
+                                        </Property>
+                                      </Properties>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                      </AuxValues>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                      <JTabbedPaneConstraints tabName="Aceros">
+                                        <Property name="tabTitle" type="java.lang.String" value="Aceros"/>
+                                      </JTabbedPaneConstraints>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tblAceros">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="7" rowCount="4">
+                                            <Column editable="true" title="ID" type="java.lang.Object"/>
+                                            <Column editable="true" title="Materia Prima" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
+                                            <Column editable="true" title="PU" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
+                                            <Column editable="true" title="PU" type="java.lang.Object"/>
+                                            <Column editable="true" title="Peso te&#xf3;rico" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="opaque" type="boolean" value="false"/>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                        </Property>
+                                      </Properties>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                      </AuxValues>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane11">
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                      <JTabbedPaneConstraints tabName="Maderas">
+                                        <Property name="tabTitle" type="java.lang.String" value="Maderas"/>
+                                      </JTabbedPaneConstraints>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tblMaderas">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="6" rowCount="4">
+                                            <Column editable="true" title="ID" type="java.lang.Object"/>
+                                            <Column editable="true" title="Materia Prima" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                        </Property>
+                                      </Properties>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                      </AuxValues>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane12">
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                      <JTabbedPaneConstraints tabName="Maquinaria">
+                                        <Property name="tabTitle" type="java.lang.String" value="Maquinaria"/>
+                                      </JTabbedPaneConstraints>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tblMaquinaria">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="6" rowCount="4">
+                                            <Column editable="true" title="ID" type="java.lang.Object"/>
+                                            <Column editable="true" title="Materia Prima" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                        </Property>
+                                      </Properties>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                      </AuxValues>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                      <JTabbedPaneConstraints tabName="Ferreteria">
+                                        <Property name="tabTitle" type="java.lang.String" value="Ferreteria"/>
+                                      </JTabbedPaneConstraints>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tblFerreteria">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="6" rowCount="4">
+                                            <Column editable="true" title="ID" type="java.lang.Object"/>
+                                            <Column editable="true" title="Materia Prima" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                        </Property>
+                                      </Properties>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                      </AuxValues>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane16">
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                      <JTabbedPaneConstraints tabName="Pisos Y Azulejos">
+                                        <Property name="tabTitle" type="java.lang.String" value="Pisos Y Azulejos"/>
+                                      </JTabbedPaneConstraints>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tblPisos">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="6" rowCount="4">
+                                            <Column editable="true" title="ID" type="java.lang.Object"/>
+                                            <Column editable="true" title="Materia Prima" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                        </Property>
+                                      </Properties>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                      </AuxValues>
+                                    </Component>
+                                  </SubComponents>
+                                </Container>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane17">
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                  </AuxValues>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                      <JTabbedPaneConstraints tabName="Pinturas">
+                                        <Property name="tabTitle" type="java.lang.String" value="Pinturas"/>
+                                      </JTabbedPaneConstraints>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Component class="javax.swing.JTable" name="tblPinturas">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Segoe UI" size="18" style="0"/>
+                                        </Property>
+                                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                          <Table columnCount="6" rowCount="4">
+                                            <Column editable="true" title="ID" type="java.lang.Object"/>
+                                            <Column editable="true" title="Materia Prima" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                            <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
+                                            <Column editable="true" title="P.U" type="java.lang.Object"/>
+                                          </Table>
+                                        </Property>
+                                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                          <TableColumnModel selectionModel="0">
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                              <Title/>
+                                              <Editor/>
+                                              <Renderer/>
+                                            </Column>
+                                          </TableColumnModel>
+                                        </Property>
+                                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                         </Property>
                                       </Properties>
                                       <AuxValues>
@@ -903,7 +1394,7 @@
                                           <Properties>
                                             <Property name="columns" type="int" value="20"/>
                                             <Property name="rows" type="int" value="5"/>
-                                            <Property name="text" type="java.lang.String" value="DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE,&#xa;ACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.&#xa;"/>
+                                            <Property name="text" type="java.lang.String" value="DESPALME DE CAPA VEGETAL DE 10 A 15 CMS DE ESPESOR POR MEDIOS MECANICOS. INCLUYE, ACARREO DENTRO DE LA OBRA, EQUIPO, HERRAMIENTA MENOR Y MANO DE OBRA.&#xa;&#xa;"/>
                                             <Property name="enabled" type="boolean" value="false"/>
                                           </Properties>
                                           <AccessibilityProperties>
@@ -933,46 +1424,13 @@
                                     <Property name="rows" type="int" value="1"/>
                                   </Layout>
                                   <SubComponents>
-                                    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+                                    <Container class="javax.swing.JTabbedPane" name="jtbPreeliminares">
                                       <AuxValues>
                                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TabbedPaneTransparente();"/>
                                       </AuxValues>
 
                                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                                       <SubComponents>
-                                        <Container class="javax.swing.JScrollPane" name="jScrollPane9">
-                                          <AuxValues>
-                                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
-                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                                          </AuxValues>
-                                          <Constraints>
-                                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                                              <JTabbedPaneConstraints tabName="Equipo">
-                                                <Property name="tabTitle" type="java.lang.String" value="Equipo"/>
-                                              </JTabbedPaneConstraints>
-                                            </Constraint>
-                                          </Constraints>
-
-                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                                          <SubComponents>
-                                            <Component class="javax.swing.JTable" name="tblEquipoPre">
-                                              <Properties>
-                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                                  <Table columnCount="5" rowCount="4">
-                                                    <Column editable="true" title="Descripcion" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Unidad" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Costo Unitario" type="java.lang.Object"/>
-                                                    <Column editable="true" title="Total" type="java.lang.Object"/>
-                                                  </Table>
-                                                </Property>
-                                              </Properties>
-                                              <AuxValues>
-                                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
-                                              </AuxValues>
-                                            </Component>
-                                          </SubComponents>
-                                        </Container>
                                         <Container class="javax.swing.JScrollPane" name="jScrollPane6">
                                           <AuxValues>
                                             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
@@ -988,10 +1446,13 @@
 
                                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                           <SubComponents>
-                                            <Component class="javax.swing.JTable" name="tblMaterialPre">
+                                            <Component class="javax.swing.JTable" name="tblMaterialPre1">
                                               <Properties>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                                  <Table columnCount="5" rowCount="4">
+                                                  <Table columnCount="8" rowCount="4">
+                                                    <Column editable="true" title="ID" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Unidad 1" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Unidad 2" type="java.lang.Object"/>
                                                     <Column editable="true" title="Descripcion" type="java.lang.Object"/>
                                                     <Column editable="true" title="Unidad" type="java.lang.Object"/>
                                                     <Column editable="true" title="Cantidad" type="java.lang.Object"/>
@@ -1001,6 +1462,26 @@
                                                 </Property>
                                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                                   <TableColumnModel selectionModel="0">
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
                                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                                       <Title/>
                                                       <Editor/>
@@ -1048,7 +1529,7 @@
 
                                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                           <SubComponents>
-                                            <Component class="javax.swing.JTable" name="tblManoPre">
+                                            <Component class="javax.swing.JTable" name="tblManoPre1">
                                               <Properties>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                                   <Table columnCount="5" rowCount="4">
@@ -1058,6 +1539,38 @@
                                                     <Column editable="true" title="Costo Unitario" type="java.lang.Object"/>
                                                     <Column editable="true" title="Total" type="java.lang.Object"/>
                                                   </Table>
+                                                </Property>
+                                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                                  <TableColumnModel selectionModel="0">
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                                      <Title/>
+                                                      <Editor/>
+                                                      <Renderer/>
+                                                    </Column>
+                                                  </TableColumnModel>
+                                                </Property>
+                                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                                 </Property>
                                               </Properties>
                                               <AuxValues>
@@ -1081,7 +1594,40 @@
 
                                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                           <SubComponents>
-                                            <Component class="javax.swing.JTable" name="tblHerramientasPre">
+                                            <Component class="javax.swing.JTable" name="tblHerramientasPre1">
+                                              <Properties>
+                                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                                  <Table columnCount="5" rowCount="4">
+                                                    <Column editable="true" title="Descripcion" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Unidad" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Cantidad" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Costo Unitario" type="java.lang.Object"/>
+                                                    <Column editable="true" title="Total" type="java.lang.Object"/>
+                                                  </Table>
+                                                </Property>
+                                              </Properties>
+                                              <AuxValues>
+                                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TablaTransparente();"/>
+                                              </AuxValues>
+                                            </Component>
+                                          </SubComponents>
+                                        </Container>
+                                        <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ScrollPanelTransparente();"/>
+                                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                                          </AuxValues>
+                                          <Constraints>
+                                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                                              <JTabbedPaneConstraints tabName="Equipo">
+                                                <Property name="tabTitle" type="java.lang.String" value="Equipo"/>
+                                              </JTabbedPaneConstraints>
+                                            </Constraint>
+                                          </Constraints>
+
+                                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                          <SubComponents>
+                                            <Component class="javax.swing.JTable" name="tblEquipoPre1">
                                               <Properties>
                                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                                   <Table columnCount="5" rowCount="4">
